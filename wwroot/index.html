@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Time Management SPA</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+
+    <!-- Top Menu-->
+    <div class="TopMenu">
+        <a href="#account" id="Account" onclick="changeState(this.id)">ACCOUNT</a>
+        <a href="#calendar" id="Calendar" onclick="changeState(this.id)">CALENDAR</a>
+        <a href="#breakdown" id="Breakdown" onclick="changeState(this.id)">BREAKDOWN</a>
+    </div>
+
+
+    <!-- Account Section -->
+    <div class="Account" id="AccountState">
+        <h1>Account.</h1>
+        <p>Welcome To Tilted Towers</p>
+    </div>
+   
+
+    <!-- Calendar Section -->
+   <div class="Calendar" id="CalendarState">
+        <h2> its calendar time</h2>
+   </div>
+
+    <!-- Breakdown Section -->
+    <div class="Breakdown" id="BreakdownStater">
+        <h3>ppppppp poggies</h3>
+    </div>
+
+    <script>
+        function changeState(currentID) {
+            if (currentID.style.display === "none"){
+                currentID.style.display = "block";
+            } else{
+                currentID.style.display = "none";
+            }
+        }
+        </script>
+
+    </body>
+</html>

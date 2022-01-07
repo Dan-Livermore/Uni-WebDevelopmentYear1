@@ -1,0 +1,23 @@
+.TopMenu {
+    display: table;
+    margin: 0 auto;
+    background-color: lightgray;
+}
+
+.TopMenu {
+    float: right;
+}
+
+    .TopMenu a {
+        display: block;
+        color: black;
+        text-align: center;
+        width: 100%;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+        .TopMenu a:hover {
+            background-color: grey;
+            color: white;
+        }
