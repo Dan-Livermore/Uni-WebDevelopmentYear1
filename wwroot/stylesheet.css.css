@@ -1,0 +1,35 @@
+.TopMenu {
+    display: table;
+    background-color: gray;
+    float: right;
+}
+
+    .TopMenu a {
+        display: block;
+        color: white;
+        text-align: center;
+        width: 100%;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+        .TopMenu a:hover {
+            background-color: lightgrey;
+            color: black;
+        }
+
+.GridContainer {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-gap: 10px;
+    background-color: white;     
+    }
+          
+.Item6{
+    background-color: lightblue;
+    padding: 20px 0;
+    }
+
+.Item1{
+    background-color: white;
+}

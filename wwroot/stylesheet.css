@@ -1,0 +1,43 @@
+.TopMenu {
+    display: table;
+    background-color: gray;
+    float: right;
+}
+
+    .TopMenu a {
+        display: block;
+        color: white;
+        text-align: center;
+        width: 100%;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+        .TopMenu a:hover {
+            background-color: lightgrey;
+            color: black;
+        }
+
+.GridContainer {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-gap: 10px;
+    background-color: white;    
+    height: 81px;
+    width: 81px; 
+    }
+          
+.GridContainer > div {
+    height: 81px;
+    width: 81px;
+    background-color: lightblue;
+    padding: 10px 0;
+    }
+
+.GridContainer > div hover{
+    background-color: blue;
+}
+
+#Empty{
+    background-color: white;
+}
