@@ -1,19 +1,24 @@
-.TopMenu {
-    display: table;
+.TopMenu ul{
     background-color: gray;
-    float: right;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
-    .TopMenu a {
+.TopMenu li{
+    float:right;    
+}
+
+    .TopMenu li a {
         display: block;
         color: white;
         text-align: center;
-        width: 100%;
         padding: 16px;
         text-decoration: none;
     }
 
-        .TopMenu a:hover {
+        .TopMenu li a:hover {
             background-color: lightgrey;
             color: black;
         }
@@ -27,15 +32,25 @@
     width: 81px; 
     }
           
+.GridContainer .Day {
+    height: 30px;
+    background-color: white;
+    text-align: center;
+}
+
+.GridContainer .Day:hover {
+    background-color: white;
+    }
+
 .GridContainer > div {
     height: 81px;
     width: 81px;
-    background-color: lightblue;
+    background-color: lightskyblue;
     padding: 10px 0;
     }
 
-.GridContainer > div hover{
-    background-color: blue;
+.GridContainer > div:hover{
+    background-color: lightblue;
 }
 
 #Empty{

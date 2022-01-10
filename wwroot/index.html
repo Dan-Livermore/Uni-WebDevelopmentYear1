@@ -3,69 +3,75 @@
     <meta charset="UTF-8">
     <title>Time Management SPA</title>
     <link rel="stylesheet" href="stylesheet.css">
+    <script src="javascript.js"></script>
 </head>
 
 <body>
 
     <!-- Top Menu-->
     <div class="TopMenu">
-        <a href="#account" id="Account" onclick="changeState(this.id)">ACCOUNT</a>
-        <a href="#calendar" id="Calendar" onclick="changeState(this.id)">CALENDAR</a>
-        <a href="#breakdown" id="Breakdown" onclick="changeState(this.id)">BREAKDOWN</a>
+        <ul id="MenuItems">
+        <li><a href="#breakdown" id="Breakdown" onclick="changeState(this.id)">BREAKDOWN</a></li>
+        <li><a href="#calendar" id="Calendar" onclick="changeState(this.id)">CALENDAR</a></li>
+        <li><a href="#account" id="Account" onclick="changeState(this.id)">ACCOUNT</a></li>    
+        </ul>
     </div>
-
-
-    <!-- Account Section -->
-    <div class="Account" id="AccountState">
-        <h1>Welcome To Tilted Towers</h1>
-    </div>
-   
 
     <!-- Calendar Section -->
    <div class="Calendar" id="CalendarState">
-        <h2> its calendar time</h2>
+        <h1> January</h2>
+        <p></p>
+        
         <div class="GridContainer">
+            <div id="Mon" class="Day">Monday</div>
+            <div id="Tue" class="Day">Tuesday</div>
+            <div id="Wed" class="Day">Wednesday</div>
+            <div id="Thu" class="Day">Thursday</div>
+            <div id="Fri" class="Day">Friday</div>
+            <div id="Sat" class="Day">Saturday</div>
+            <div id="Sun" class="Day">Sunday</div>
+
             <div id="Empty" class="Item1"></div>
             <div id="Empty" class="Item2"></div>
             <div id="Empty" class="Item3"></div>
             <div id="Empty" class="Item4"></div>
             <div id="Empty" class="Item5"></div>
-            <div class="Item6"> 1</div>
-            <div class="Item7"> 2</div>
+            <div id="Active" class="Item6">1</div>
+            <div id="Active" class="Item7">2</div>
 
-            <div class="Item8"> 3</div>
-            <div class="Item9"> 4</div>
-            <div class="Item10"> 5</div>
-            <div class="Item11"> 6</div>
-            <div class="Item12"> 7</div>
-            <div class="Item13"> 8</div>
-            <div class="Item14"> 9</div>
+            <div id="Active" class="Item8">3</div>
+            <div id="Active" class="Item9">4</div>
+            <div id="Active" class="Item10">5</div>
+            <div id="Active" class="Item11">6</div>
+            <div id="Active" class="Item12">7</div>
+            <div id="Active" class="Item13">8</div>
+            <div id="Active" class="Item14">9</div>
 
-            <div class="Item15">10</div>
-            <div class="Item16">11</div>
-            <div class="Item17">12</div>
-            <div class="Item18">13</div>
-            <div class="Item19">14</div>
-            <div class="Item20">15</div>
-            <div class="Item21">16</div>
+            <div id="Active" class="Item15">10</div>
+            <div id="Active" class="Item16">11</div>
+            <div id="Active" class="Item17">12</div>
+            <div id="Active" class="Item18">13</div>
+            <div id="Active" class="Item19">14</div>
+            <div id="Active" class="Item20">15</div>
+            <div id="Active" class="Item21">16</div>
 
-            <div class="Item22">17</div>
-            <div class="Item23">18</div>
-            <div class="Item24">19</div>
-            <div class="Item25">20</div>
-            <div class="Item26">21</div>
-            <div class="Item27">22</div>
-            <div class="Item28">23</div>
+            <div id="Active" class="Item22">17</div>
+            <div id="Active" class="Item23">18</div>
+            <div id="Active" class="Item24">19</div>
+            <div id="Active" class="Item25">20</div>
+            <div id="Active" class="Item26">21</div>
+            <div id="Active" class="Item27">22</div>
+            <div id="Active" class="Item28">23</div>
 
-            <div class="Item29">24</div>
-            <div class="Item30">25</div>
-            <div class="Item31">26</div>
-            <div class="Item32">27</div>
-            <div class="Item33">28</div>
-            <div class="Item34">29</div>
-            <div class="Item35">30</div>
+            <div id="Active" class="Item29">24</div>
+            <div id="Active" class="Item30">25</div>
+            <div id="Active" class="Item31">26</div>
+            <div id="Active" class="Item32">27</div>
+            <div id="Active" class="Item33">28</div>
+            <div id="Active" class="Item34">29</div>
+            <div id="Active" class="Item35">30</div>
 
-            <div class="Item36">31</div>
+            <div id="Active" class="Item36">31</div>
             <div id="Empty" class="Item37"></div>
             <div id="Empty" class="Item38"></div>
             <div id="Empty" class="Item39"></div>
@@ -75,22 +81,15 @@
         </div>
     </div>
 
+    <!-- Account Section -->
+    <div class="Account" id="AccountState">
+        <h3>Welcome To Tilted Towers</h3>
+    </div>
+   
     <!-- Breakdown Section -->
-    <div class="Breakdown" id="BreakdownStater">
+    <div class="Breakdown" id="BreakdownState">
         <h3>ppppppp poggies</h3>
     </div>
 
-    <!--
-    <script>
-        function changeState(currentID) {
-            alert(currentID);
-            if (currentID == "Account"){
-                currentID.display = "block";
-            } else{
-                currentID.display = "none";
-            }
-        }
-        </script>
-    -->
     </body>
 </html>
