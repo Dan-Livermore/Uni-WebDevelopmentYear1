@@ -6,7 +6,7 @@
     <script src="javascript.js"></script>
 </head>
 
-<body>
+<body onload="hideStates()">
 
     <!-- Top Menu-->
     <div class="TopMenu">
@@ -17,9 +17,22 @@
         </ul>
     </div>
 
+    <!-- Account Section -->
+    <div class="Account" id="AccountState">
+        <h1>Time Management Program</h1>
+        
+        <form >
+            <label for="uname">Username:</label>
+            <input type="text" id="uname" name="uname"><br><br>
+            <label for="pword">Password:</label>
+            <input type="text" id="pword" name="pword"><br><br>
+            <input type="submit" value="OK">
+          </form>
+    </div>
+
     <!-- Calendar Section -->
    <div class="Calendar" id="CalendarState">
-        <h1> January</h2>
+        <h1> January 2021</h2>
         <p></p>
         
         <div class="GridContainer">
@@ -79,11 +92,6 @@
             <div id="Empty" class="Item41"></div>
             <div id="Empty" class="Item42"></div>
         </div>
-    </div>
-
-    <!-- Account Section -->
-    <div class="Account" id="AccountState">
-        <h3>Welcome To Tilted Towers</h3>
     </div>
    
     <!-- Breakdown Section -->

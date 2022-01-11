@@ -1,3 +1,9 @@
+function hideStates(){
+    document.getElementById("BreakdownState").style.display="none";
+    document.getElementById("CalendarState").style.display="none";
+}
+
+
 function changeState(currentID) {
     if (currentID === "Account"){
     document.getElementById("BreakdownState").style.display="none";
