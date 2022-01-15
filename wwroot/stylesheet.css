@@ -26,6 +26,8 @@
         }
 
 .Account form{
+    font-size: 20px;
+    font-family: monospace;
     padding: 25px 0 0 100px;
 }
 
@@ -36,6 +38,7 @@
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto;
     grid-gap: 10px;
+    padding-left: 450px;
     background-color: white;    
     height: 81px;
     width: 81px; 
@@ -54,12 +57,11 @@
 .GridContainer > div {
     height: 81px;
     width: 81px;
-    background-color: lightskyblue;
-    padding: 10px 0;
+    background-color: dodgerblue;
     }
 
 .GridContainer > div:hover{
-    background-color: lightblue;
+    background-color: lightskyblue;
 }
 
 #Empty{

@@ -11,9 +11,9 @@
     <!-- Top Menu-->
     <div class="TopMenu">
         <ul id="MenuItems">
-        <li><a href="#breakdown" id="Breakdown" onclick="changeState(this.id)">BREAKDOWN</a></li>
-        <li><a href="#calendar" id="Calendar" onclick="changeState(this.id)">CALENDAR</a></li>
-        <li><a href="#account" id="Account" onclick="changeState(this.id)">ACCOUNT</a></li>    
+            <li><a href="#breakdown" id="Breakdown" onclick="changeState(this.id)">BREAKDOWN</a></li>
+            <li><a href="#calendar" id="Calendar" onclick="changeState(this.id)">CALENDAR</a></li>
+            <li><a href="#account" id="Account" onclick="changeState(this.id)">ACCOUNT</a></li>    
         </ul>
     </div>
 
@@ -22,9 +22,9 @@
         <h1>Time Management Program</h1>
         
         <form >
-            <label for="uname">Username:</label>
+            <label for="uname">Username: </label>
             <input type="text" id="uname" name="uname"><br><br>
-            <label for="pword">Password:</label>
+            <label for="pword">Password: </label>
             <input type="text" id="pword" name="pword"><br><br>
             <input type="submit" value="OK">
           </form>
@@ -49,54 +49,72 @@
             <div id="Empty" class="Item3"></div>
             <div id="Empty" class="Item4"></div>
             <div id="Empty" class="Item5"></div>
-            <div id="Active" class="Item6">1</div>
-            <div id="Active" class="Item7">2</div>
+            <div id="Active" class="Item6" onclick="loadDay('Saturday 1st January 2022')">1</div>
+            <div id="Active" class="Item7" onclick="loadDay('Sunday 2nd January 2022')">2</div>
 
-            <div id="Active" class="Item8">3</div>
-            <div id="Active" class="Item9">4</div>
-            <div id="Active" class="Item10">5</div>
-            <div id="Active" class="Item11">6</div>
-            <div id="Active" class="Item12">7</div>
-            <div id="Active" class="Item13">8</div>
-            <div id="Active" class="Item14">9</div>
+            <div id="Active" class="Item8" onclick="loadDay('Monday 3rd January 2022')">3</div>
+            <div id="Active" class="Item9" onclick="loadDay('Tuesday 4th January 2022')">4</div>
+            <div id="Active" class="Item10" onclick="loadDay('Wednesday 5th January 2022')">5</div>
+            <div id="Active" class="Item11" onclick="loadDay('Thursday 6th January 2022')">6</div>
+            <div id="Active" class="Item12" onclick="loadDay('Friday 7th January 2022')">7</div>
+            <div id="Active" class="Item13" onclick="loadDay('Saturday 8th January 2022')">8</div>
+            <div id="Active" class="Item14" onclick="loadDay('Sunday 9th January 2022')">9</div>
 
-            <div id="Active" class="Item15">10</div>
-            <div id="Active" class="Item16">11</div>
-            <div id="Active" class="Item17">12</div>
-            <div id="Active" class="Item18">13</div>
-            <div id="Active" class="Item19">14</div>
-            <div id="Active" class="Item20">15</div>
-            <div id="Active" class="Item21">16</div>
+            <div id="Active" class="Item15" onclick="loadDay('Monday 10th January 2022')">10</div>
+            <div id="Active" class="Item16" onclick="loadDay('Tuesday 11th January 2022')">11</div>
+            <div id="Active" class="Item17" onclick="loadDay('Wednesday 12th January 2022')">12</div>
+            <div id="Active" class="Item18" onclick="loadDay('Thursday 13th January 2022')">13</div>
+            <div id="Active" class="Item19" onclick="loadDay('Friday 14th January 2022')">14</div>
+            <div id="Active" class="Item20" onclick="loadDay('Saturday 15th January 2022')">15</div>
+            <div id="Active" class="Item21" onclick="loadDay('Sunday 16th January 2022')">16</div>
 
-            <div id="Active" class="Item22">17</div>
-            <div id="Active" class="Item23">18</div>
-            <div id="Active" class="Item24">19</div>
-            <div id="Active" class="Item25">20</div>
-            <div id="Active" class="Item26">21</div>
-            <div id="Active" class="Item27">22</div>
-            <div id="Active" class="Item28">23</div>
+            <div id="Active" class="Item22" onclick="loadDay('Monday 17th January 2022')">17</div>
+            <div id="Active" class="Item23" onclick="loadDay('Tuesday 18th January 2022')">18</div>
+            <div id="Active" class="Item24" onclick="loadDay('Wednesday 19th January 2022')">19</div>
+            <div id="Active" class="Item25" onclick="loadDay('Thursday 20th January 2022')">20</div>
+            <div id="Active" class="Item26" onclick="loadDay('Friday 21st January 2022')">21</div>
+            <div id="Active" class="Item27" onclick="loadDay('Saturday 22nd January 2022')">22</div>
+            <div id="Active" class="Item28" onclick="loadDay('Sunday 23rd January 2022')">23</div>
 
-            <div id="Active" class="Item29">24</div>
-            <div id="Active" class="Item30">25</div>
-            <div id="Active" class="Item31">26</div>
-            <div id="Active" class="Item32">27</div>
-            <div id="Active" class="Item33">28</div>
-            <div id="Active" class="Item34">29</div>
-            <div id="Active" class="Item35">30</div>
+            <div id="Active" class="Item29" onclick="loadDay('Monday 24th January 2022')">24</div>
+            <div id="Active" class="Item30" onclick="loadDay('Tuesday 25th January 2022')">25</div>
+            <div id="Active" class="Item31" onclick="loadDay('Wednesday 26th January 2022')">26</div>
+            <div id="Active" class="Item32" onclick="loadDay('Thursday 27th January 2022')">27</div>
+            <div id="Active" class="Item33" onclick="loadDay('Friday 28th January 2022')">28</div>
+            <div id="Active" class="Item34" onclick="loadDay('Saturday 29th January 2022')">29</div>
+            <div id="Active" class="Item35" onclick="loadDay('Sunday 30th January 2022')">30</div>
 
-            <div id="Active" class="Item36">31</div>
+            <div id="Active" class="Item36" onclick="loadDay('Monday 31st January 2022')">31</div>
             <div id="Empty" class="Item37"></div>
             <div id="Empty" class="Item38"></div>
             <div id="Empty" class="Item39"></div>
-            <div id="Empty" lass="Item40"></div>
+            <div id="Empty" class="Item40"></div>
             <div id="Empty" class="Item41"></div>
             <div id="Empty" class="Item42"></div>
         </div>
     </div>
    
+    <!-- Data Section -->
+    <div class="Data" id="DataState">
+        <h1 id="title">blank</h1>
+        <form >
+            <label for="aname"> App Name:  </label>
+            <input type="text" id="aname" name="aname"><br><br>
+            <label for="tspent"> Time Spent: </label>
+            <input type="text" id="tspent" name="tspent"><br><br>
+            <label for="tused"> Times Used: </label>
+            <input type="text" id="tused" name="tused"><br><br>
+            <input type="submit" value="Save" onclick="storeData(title, aname, tspent, tused)">
+          </form>
+    </div>
+
     <!-- Breakdown Section -->
     <div class="Breakdown" id="BreakdownState">
-        <h3>ppppppp poggies</h3>
+        <h1>Breakdown</h1>
+        <p id="BreakdownDate">date</p>
+        <p id="BreakdownAppName">name</p>
+        <p id="BreakdownTimeSpent">time</p>
+        <p id="BreakdownTimesUsed">uses</p>
     </div>
 
     </body>
