@@ -6,6 +6,8 @@ This prototype contains the first 2 sprints of the application, one of which has
 In this build the user can change which state of the webpage they are on, select a day in January 2022 and enter the data on the selected day.
 After this they can change states to the Breakdown section and the data they have entered should be represented there.
 
+The entered data is stored in local storage as otherwise the data would be wiped as the state is changed.
+
 There account window has entry boxes for a username and password, these are not currently used but it is used to show how to swap between the states of the webpage.
 
 Following this, I intend to store the users data into JSON files so more than one set of data can be stored over time, 
