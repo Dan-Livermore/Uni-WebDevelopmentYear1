@@ -11,6 +11,7 @@
     <!-- Top Menu-->
     <div class="TopMenu">
         <ul id="MenuItems">
+            <!-- These are the menu options that when clicked change the active state of the website-->
             <li><a href="#breakdown" id="Breakdown" onclick="changeState(this.id)">BREAKDOWN</a></li>
             <li><a href="#calendar" id="Calendar" onclick="changeState(this.id)">CALENDAR</a></li>
             <li><a href="#account" id="Account" onclick="changeState(this.id)">ACCOUNT</a></li>    
@@ -20,7 +21,8 @@
     <!-- Account Section -->
     <div class="Account" id="AccountState">
         <h1>Time Management Program</h1>
-        
+
+        <!-- This form will collect the username and password in later versions so no-one else can use another person's account-->
         <form >
             <label for="uname">Username: </label>
             <input type="text" id="uname" name="uname"><br><br>
@@ -36,6 +38,7 @@
         <p></p>
         
         <div class="GridContainer">
+            <!-- Creates a grid that is 7x7 elements in size, the first row displays the days of the week while the rest show the calendar-->
             <div id="Mon" class="Day">Monday</div>
             <div id="Tue" class="Day">Tuesday</div>
             <div id="Wed" class="Day">Wednesday</div>
@@ -49,6 +52,7 @@
             <div id="Empty" class="Item3"></div>
             <div id="Empty" class="Item4"></div>
             <div id="Empty" class="Item5"></div>
+            <!-- When clicked the days on the calendar will open a new state where the user can enter in their data-->
             <div id="Active" class="Item6" onclick="loadDay('Saturday 1st January 2022')">1</div>
             <div id="Active" class="Item7" onclick="loadDay('Sunday 2nd January 2022')">2</div>
 
@@ -98,18 +102,20 @@
     <div class="Data" id="DataState">
         <h1 id="title">blank</h1>
         <form >
+            <!-- This form is where the user enters in their data-->
             <label for="aname"> App Name:  </label>
             <input type="text" id="aname" name="aname"><br><br>
             <label for="tspent"> Time Spent: </label>
             <input type="text" id="tspent" name="tspent"><br><br>
             <label for="tused"> Times Used: </label>
             <input type="text" id="tused" name="tused"><br><br>
-            <input type="submit" value="Save" onclick="fillData(document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value)">
-          </form>
+            <input type="submit" value="Save" onclick="storeData(document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value)">
+        </form>
     </div>
 
     <!-- Breakdown Section -->
     <div class="Breakdown" id="BreakdownState">
+        <!-- These placeholder values are replaced once data has been entered.-->
         <h1>Breakdown</h1>
         <p id="BreakdownDate">date</p>
         <p id="BreakdownAppName">name</p>

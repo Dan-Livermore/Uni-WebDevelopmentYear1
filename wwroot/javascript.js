@@ -1,9 +1,5 @@
-var a = "temp";
-var b = "temp";
-var c = "temp";
-var d = "temp";
-
 function hideStates(){
+    // This function hides the other states so when the application is first loaded, only the account state is shown.
     document.getElementById("BreakdownState").style.display="none";
     document.getElementById("CalendarState").style.display="none";
     document.getElementById("DataState").style.display="none";
@@ -11,6 +7,7 @@ function hideStates(){
 
 
 function loadDay(title){
+    // This takes the name from the calendar and loads it into the data entry state
     document.getElementById("DataState").style.display="block";
     var x = document.getElementById("title");
     x.innerHTML = title;
@@ -18,30 +15,33 @@ function loadDay(title){
 
 
 function storeData(title, aname, tspent, tused){
-    var w  = "Day:              " + title;
-    a = a.replace("temp", w);
+    // The users data is enterred and stored into local storage so it doesnt get deleted when changing states.
+    var w  = "Day:             " + title;
+    localStorage.setItem("a", w);
 
-    var x = document.getElementById("BreakdownAppName").innerHTML;
-    x = x.toString().replace(x,"App Name:         " + aname);
+    var x = "App Name:         " + aname;
+    localStorage.setItem("b", x);
 
-    var y = document.getElementById("BreakdownTimeSpent").innerHTML;
-    y = y.toString().replace(y,"Total Time Spent: " + tspent);
+    var y = "Total Time Spent: " + tspent + " minutes";
+    localStorage.setItem("c", y);
 
-    var z = document.getElementById("BreakdownTimesUsed").innerHTML;
-    z = z.toString().replace(z,"Times Used:       " + tused);
+    var z = "Times Used:       " + tused;
+    localStorage.setItem("d", z);
     
 }
 
 
-function fillData(w,x,y,z){
-    document.getElementById("BreakdownDate").innerHTML = w;
-    document.getElementById("BreakdownAppName").innerHTML = x;
-    document.getElementById("BreakdownTimeSpent").innerHTML = y;
-    document.getElementById("BreakdownTimesUsed").innerHTML = z;
+function fillData(){
+    // The elements on the Breakdown state are corrected using the data stored in the local storage.
+    document.getElementById("BreakdownDate").innerHTML = localStorage.getItem("a");
+    document.getElementById("BreakdownAppName").innerHTML = localStorage.getItem("b");
+    document.getElementById("BreakdownTimeSpent").innerHTML = localStorage.getItem("c");
+    document.getElementById("BreakdownTimesUsed").innerHTML = localStorage.getItem("d");
 }
 
 
 function changeState(currentID) {
+    // This hides all other states but the one that is currently loaded and if it is on the breakdown state, it attempts to fill the placeholder values with ones stored locally
     if (currentID === "Account"){
     document.getElementById("BreakdownState").style.display="none";
     document.getElementById("CalendarState").style.display="none";
@@ -57,6 +57,7 @@ function changeState(currentID) {
     document.getElementById("CalendarState").style.display="none";
     document.getElementById("AccountState").style.display="none";
     document.getElementById("DataState").style.display="none";
-    fillData(document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value);
-    }
+    fillData();
+}
+    
 }
