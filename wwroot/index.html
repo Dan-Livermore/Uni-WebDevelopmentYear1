@@ -104,7 +104,7 @@
             <input type="text" id="tspent" name="tspent"><br><br>
             <label for="tused"> Times Used: </label>
             <input type="text" id="tused" name="tused"><br><br>
-            <input type="submit" value="Save" onclick="storeData(title, aname, tspent, tused)">
+            <input type="submit" value="Save" onclick="fillData(document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value)">
           </form>
     </div>
 
