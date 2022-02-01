@@ -34,7 +34,7 @@
 
     <!-- Calendar Section -->
    <div class="Calendar" id="CalendarState">
-        <h1> January 2021</h2>
+        <h1 id="CalendarYearTitle"> Month Year</h2>
         <p></p>
         
         <div class="GridContainer">
@@ -47,54 +47,57 @@
             <div id="Sat" class="Day">Saturday</div>
             <div id="Sun" class="Day">Sunday</div>
 
-            <div id="Empty" class="Item1"></div>
-            <div id="Empty" class="Item2"></div>
-            <div id="Empty" class="Item3"></div>
-            <div id="Empty" class="Item4"></div>
-            <div id="Empty" class="Item5"></div>
-            <!-- When clicked the days on the calendar will open a new state where the user can enter in their data-->
-            <div id="Active" class="Item6" onclick="loadDay('Saturday 1st January 2022')">1</div>
-            <div id="Active" class="Item7" onclick="loadDay('Sunday 2nd January 2022')">2</div>
+<!-- When clicked the days on the calendar will open a new state where the user can enter in their data-->
+            <!-- <div id="Active" class="Item6" onclick="loadDay('Saturday 1st January 2022')">1</div> -->
 
-            <div id="Active" class="Item8" onclick="loadDay('Monday 3rd January 2022')">3</div>
-            <div id="Active" class="Item9" onclick="loadDay('Tuesday 4th January 2022')">4</div>
-            <div id="Active" class="Item10" onclick="loadDay('Wednesday 5th January 2022')">5</div>
-            <div id="Active" class="Item11" onclick="loadDay('Thursday 6th January 2022')">6</div>
-            <div id="Active" class="Item12" onclick="loadDay('Friday 7th January 2022')">7</div>
-            <div id="Active" class="Item13" onclick="loadDay('Saturday 8th January 2022')">8</div>
-            <div id="Active" class="Item14" onclick="loadDay('Sunday 9th January 2022')">9</div>
 
-            <div id="Active" class="Item15" onclick="loadDay('Monday 10th January 2022')">10</div>
-            <div id="Active" class="Item16" onclick="loadDay('Tuesday 11th January 2022')">11</div>
-            <div id="Active" class="Item17" onclick="loadDay('Wednesday 12th January 2022')">12</div>
-            <div id="Active" class="Item18" onclick="loadDay('Thursday 13th January 2022')">13</div>
-            <div id="Active" class="Item19" onclick="loadDay('Friday 14th January 2022')">14</div>
-            <div id="Active" class="Item20" onclick="loadDay('Saturday 15th January 2022')">15</div>
-            <div id="Active" class="Item21" onclick="loadDay('Sunday 16th January 2022')">16</div>
+            <div id="Item1" class="Active" onclick="loadDay()">1</div>
+            <div id="Item2" class="Active" onclick="loadDay()">2</div>
+            <div id="Item3" class="Active" onclick="loadDay()">3</div>
+            <div id="Item4" class="Active" onclick="loadDay()">4</div>
+            <div id="Item5" class="Active" onclick="loadDay()">5</div>
+            <div id="Item6" class="Active" onclick="loadDay()">6</div>
+            <div id="Item7" class="Active" onclick="loadDay()">7</div>
 
-            <div id="Active" class="Item22" onclick="loadDay('Monday 17th January 2022')">17</div>
-            <div id="Active" class="Item23" onclick="loadDay('Tuesday 18th January 2022')">18</div>
-            <div id="Active" class="Item24" onclick="loadDay('Wednesday 19th January 2022')">19</div>
-            <div id="Active" class="Item25" onclick="loadDay('Thursday 20th January 2022')">20</div>
-            <div id="Active" class="Item26" onclick="loadDay('Friday 21st January 2022')">21</div>
-            <div id="Active" class="Item27" onclick="loadDay('Saturday 22nd January 2022')">22</div>
-            <div id="Active" class="Item28" onclick="loadDay('Sunday 23rd January 2022')">23</div>
+            <div id="Item8" class="Active" onclick="loadDay()">8</div>
+            <div id="Item9" class="Active" onclick="loadDay()">9</div>
+            <div id="Item10" class="Active" onclick="loadDay()">10</div>
+            <div id="Item11" class="Active" onclick="loadDay()">11</div>
+            <div id="Item12" class="Active" onclick="loadDay()">12</div>
+            <div id="Item13" class="Active" onclick="loadDay()">13</div>
+            <div id="Item14" class="Active" onclick="loadDay()">14</div>
 
-            <div id="Active" class="Item29" onclick="loadDay('Monday 24th January 2022')">24</div>
-            <div id="Active" class="Item30" onclick="loadDay('Tuesday 25th January 2022')">25</div>
-            <div id="Active" class="Item31" onclick="loadDay('Wednesday 26th January 2022')">26</div>
-            <div id="Active" class="Item32" onclick="loadDay('Thursday 27th January 2022')">27</div>
-            <div id="Active" class="Item33" onclick="loadDay('Friday 28th January 2022')">28</div>
-            <div id="Active" class="Item34" onclick="loadDay('Saturday 29th January 2022')">29</div>
-            <div id="Active" class="Item35" onclick="loadDay('Sunday 30th January 2022')">30</div>
+            <div id="Item15" class="Active" onclick="loadDay()">15</div>
+            <div id="Item16" class="Active" onclick="loadDay()">16</div>
+            <div id="Item17" class="Active" onclick="loadDay()">17</div>
+            <div id="Item18" class="Active" onclick="loadDay()">18</div>
+            <div id="Item19" class="Active" onclick="loadDay()">19</div>
+            <div id="Item20" class="Active" onclick="loadDay()">20</div>
+            <div id="Item21" class="Active" onclick="loadDay()">21</div>
 
-            <div id="Active" class="Item36" onclick="loadDay('Monday 31st January 2022')">31</div>
-            <div id="Empty" class="Item37"></div>
-            <div id="Empty" class="Item38"></div>
-            <div id="Empty" class="Item39"></div>
-            <div id="Empty" class="Item40"></div>
-            <div id="Empty" class="Item41"></div>
-            <div id="Empty" class="Item42"></div>
+            <div id="Item22" class="Active" onclick="loadDay()">22</div>
+            <div id="Item23" class="Active" onclick="loadDay()">23</div>
+            <div id="Item24" class="Active" onclick="loadDay()">24</div>
+            <div id="Item25" class="Active" onclick="loadDay()">25</div>
+            <div id="Item26" class="Active" onclick="loadDay()">26</div>
+            <div id="Item27" class="Active" onclick="loadDay()">27</div>
+            <div id="Item28" class="Active" onclick="loadDay()">28</div>
+
+            <div id="Item29" class="Active" onclick="loadDay()">29</div>
+            <div id="Item30" class="Active" onclick="loadDay()">30</div>
+            <div id="Item31" class="Active" onclick="loadDay()">31</div>
+            <div id="Item32" class="Active" onclick="loadDay()">32</div>
+            <div id="Item33" class="Active" onclick="loadDay()">33</div>
+            <div id="Item34" class="Active" onclick="loadDay()">34</div>
+            <div id="Item35" class="Active" onclick="loadDay()">35</div>
+
+            <div id="Item36" class="Active" onclick="loadDay()">36</div>
+            <div id="Item37" class="Active" onclick="LoadDay()">37</div>
+            <div id="Item38" class="Active" onclick="LoadDay()">38</div>
+            <div id="Item39" class="Active" onclick="LoadDay()">39</div>
+            <div id="Item40" class="Active" onclick="LoadDay()">40</div>
+            <div id="Item41" class="Active" onclick="LoadDay()">41</div>
+            <div id="Item42" class="Active" onclick="LoadDay()">42</div>
         </div>
     </div>
    

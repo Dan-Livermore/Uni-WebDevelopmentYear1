@@ -31,7 +31,9 @@
     padding: 25px 0 0 100px;
 }
 
-
+.Calendar h1{
+    padding-left: 670px;
+}
 
 
 .GridContainer {
@@ -54,16 +56,18 @@
     background-color: white;
     }
 
-.GridContainer > div {
+.GridContainer > .Empty {
+    height: 81px;
+    width: 81px;
+    background-color: white;
+    }
+
+.GridContainer > .Active {
     height: 81px;
     width: 81px;
     background-color: dodgerblue;
-    }
-
-.GridContainer > div:hover{
-    background-color: lightskyblue;
 }
 
-#Empty{
-    background-color: white;
+.GridContainer > #Active:hover {
+    background-color: lightskyblue;
 }
