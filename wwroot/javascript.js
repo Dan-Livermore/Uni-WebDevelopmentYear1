@@ -63,9 +63,17 @@ function changeState(currentID) {
 }
 }
 
-///function changeMonth(Month){
-//
-//}
+function changeMonthUp(Month){
+    Month = parseInt(Month) - 1;
+    if (Month > -1)
+        updateCalendar(Month);
+}
+
+function changeMonthDown(Month){
+    Month = parseInt(Month) + 1;
+    if (Month < 12)
+        updateCalendar(Month);
+}
 
 
 function getMonth(){
@@ -75,10 +83,10 @@ function getMonth(){
 }
 
 function updateCalendar(Month){
-    alert(Month);
+    
     if (Month == 0){ //Jan 2022
-        document.getElementsByClassName("CalendarYearTitle").innerHTML = "January 2022";
-        document.getElementsByClassName("CalendarYearTitle").id = 0;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "January 2022";
 
         document.getElementById("Item1").innerHTML = "";
         document.getElementById("Item1").className = "Empty";
@@ -172,8 +180,8 @@ function updateCalendar(Month){
     }
 
     else if (Month == 1){ //Feb 2022
-        document.getElementById("CalendarYearTitle").innerHTML = "February 2022";
-        document.getElementsByClassName("CalendarYearTitle").id = 1;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "February 2022";
 
         document.getElementById("Item1").innerHTML = "";
         document.getElementById("Item1").className = "Empty";
@@ -241,6 +249,7 @@ function updateCalendar(Month){
         document.getElementById("Item34").style.backgroundColor = "white";
         document.getElementById("Item35").innerHTML = "";
         document.getElementById("Item35").className = "Empty";
+        document.getElementById("Item35").style.backgroundColor = "white";
 
         document.getElementById("Item36").style.backgroundColor = "white";
         document.getElementById("Item36").innerHTML = "";
@@ -267,8 +276,8 @@ function updateCalendar(Month){
     }
 
     else if (Month == 2){ //Mar 2022
-    document.getElementById("CalendarYearTitle").innerHTML = "March 2022";
-    document.getElementsByClassName("CalendarYearTitle").id = 2;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "March 2022";
 
     document.getElementById("Item1").innerHTML = "";
     document.getElementById("Item1").className = "Empty";
@@ -367,8 +376,8 @@ function updateCalendar(Month){
     }
 
     else if (Month == 3){ //Apr 2022
-    document.getElementById("CalendarYearTitle").innerHTML = "April 2022";
-    document.getElementsByClassName("CalendarYearTitle").id = 3;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "April 2022";
 
     document.getElementById("Item1").innerHTML = "";
     document.getElementById("Item1").className = "Empty";
@@ -463,8 +472,8 @@ function updateCalendar(Month){
     }
 
     else if (Month == 4){ //May 2022
-        document.getElementById("CalendarYearTitle").innerHTML = "May 2022";
-        document.getElementsByClassName("CalendarYearTitle").id = 4;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "May 2022";
 
         document.getElementById("Item1").innerHTML = "";
         document.getElementById("Item1").className = "Empty";
@@ -558,8 +567,8 @@ function updateCalendar(Month){
     }
 
     else if (Month == 5){ //June 2022
-        document.getElementById("CalendarYearTitle").innerHTML = "June 2022";
-        document.getElementsByClassName("CalendarYearTitle").id = 5;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "June 2022";
     
         document.getElementById("Item1").innerHTML = "";
         document.getElementById("Item1").className = "Empty";
@@ -653,8 +662,8 @@ function updateCalendar(Month){
     }
 
     else if (Month == 6){ //July 2022
-        document.getElementById("CalendarYearTitle").innerHTML = "July 2022";
-        document.getElementsByClassName("CalendarYearTitle").id = 6;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "July 2022";
 
         document.getElementById("Item1").innerHTML = "";
         document.getElementById("Item1").className = "Empty";
@@ -748,8 +757,8 @@ function updateCalendar(Month){
     }
 
     else if (Month == 7){ //Aug 2022
-        document.getElementById("CalendarYearTitle").innerHTML = "August 2022";
-        document.getElementsByClassName("CalendarYearTitle").id = 7;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "August 2022";
 
         document.getElementById("Item1").innerHTML = "1";
         document.getElementById("Item1").className = "Active";
@@ -849,8 +858,8 @@ function updateCalendar(Month){
     }
 
     else if (Month == 8){ //Sept 2022
-        document.getElementById("CalendarYearTitle").innerHTML = "September 2022";
-        document.getElementsByClassName("CalendarYearTitle").id = 8;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "September 2022";
 
         document.getElementById("Item1").innerHTML = "";
         document.getElementById("Item1").className = "Empty";
@@ -944,8 +953,8 @@ function updateCalendar(Month){
     }
 
     else if (Month == 9){ //Oct 2022
-        document.getElementById("CalendarYearTitle").innerHTML = "October 2022";
-        document.getElementsByClassName("CalendarYearTitle").id = 9;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "October 2022";
 
         document.getElementById("Item1").innerHTML = "";
         document.getElementById("Item1").className = "Empty";
@@ -1039,8 +1048,8 @@ function updateCalendar(Month){
     }
 
     else if (Month == 10){ //Nov 2022
-        document.getElementById("CalendarYearTitle").innerHTML = "November 2022";
-        document.getElementsByClassName("CalendarYearTitle").id = 10;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "November 2022";
 
         document.getElementById("Item1").innerHTML = "";
         document.getElementById("Item1").className = "Empty";
@@ -1134,8 +1143,8 @@ function updateCalendar(Month){
     }
 
     else if (Month == 11){ //Dec 2022
-        document.getElementById("CalendarYearTitle").innerHTML = "December 2022";
-        document.getElementsByClassName("CalendarYearTitle").id = 12;
+        document.getElementsByClassName("CalendarYearTitle").id = Month;
+        document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "December 2022";
 
         document.getElementById("Item1").innerHTML = "";
         document.getElementById("Item1").className = "Empty";

@@ -34,11 +34,11 @@
 
     <!-- Calendar Section -->
    <div class="Calendar" id="CalendarState">
-        <h1 id=0 class="CalendarYearTitle"> Month Year</h2>
+        <h1 id="0" class="CalendarYearTitle"> Month Year</h2>
         <p></p>
         
         <div class="GridContainer">
-            <!-- Creates a grid that is 7x7 elements in size, the first row displays the days of the week while the rest show the calendar-->
+            <!-- Creates a grid that is 6x7 elements in size, the first row displays the days of the week while the rest show the calendar-->
             <div id="Mon" class="Day">Monday</div>
             <div id="Tue" class="Day">Tuesday</div>
             <div id="Wed" class="Day">Wednesday</div>
@@ -100,7 +100,8 @@
             <div id="Item42" class="Active" onclick="LoadDay()">42</div>
         </div>
         
-        <!--<button type="button" onclick="UpdateCalendar(document.getElementsByClassName('CalendarYearTitle').id + 1)">Down</button> -->
+        <button type="button" onclick="changeMonthUp(document.getElementsByClassName('CalendarYearTitle').id)">Up</button>
+        <button type="button" onclick="changeMonthDown(document.getElementsByClassName('CalendarYearTitle').id)">Down</button> 
 
 
     </div>
