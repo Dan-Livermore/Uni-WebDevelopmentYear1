@@ -6,14 +6,12 @@ function hideStates(){
     getMonth();
 }
 
-
-function loadDay(title){
+function loadDay(ID){
     // This takes the name from the calendar and loads it into the data entry state
     document.getElementById("DataState").style.display="block";
-    var x = document.getElementById("title");
-    x.innerHTML = title;
+    var title = document.getElementById(ID).innerHTML + " " + document.getElementsByClassName("CalendarYearTitle")[0].innerHTML;
+    document.getElementById("title").innerHTML = title;
 }
-
 
 function storeData(title, aname, tspent, tused){
     // The users data is enterred and stored into local storage so it doesnt get deleted when changing states.
@@ -75,7 +73,6 @@ function changeMonthDown(Month){
         updateCalendar(Month);
 }
 
-
 function getMonth(){
     var Month = new Date();
     Month = Month.getMonth();
@@ -83,7 +80,6 @@ function getMonth(){
 }
 
 function updateCalendar(Month){
-    
     if (Month == 0){ //Jan 2022
         document.getElementsByClassName("CalendarYearTitle").id = Month;
         document.getElementsByClassName("CalendarYearTitle")[0].innerHTML = "January 2022";
@@ -1114,7 +1110,7 @@ function updateCalendar(Month){
         document.getElementById("Item33").style.backgroundColor = "white";
         document.getElementById("Item34").innerHTML = "";
         document.getElementById("Item34").className = "Empty";
-        document.getElementById("Item34").style.backgroundColor = "whitee";
+        document.getElementById("Item34").style.backgroundColor = "white";
         document.getElementById("Item35").innerHTML = "";
         document.getElementById("Item35").className = "Empty";
         document.getElementById("Item35").style.backgroundColor = "white";
