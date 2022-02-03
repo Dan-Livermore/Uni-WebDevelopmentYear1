@@ -4,6 +4,7 @@ function hideStates(){
     document.getElementById("CalendarState").style.display="none";
     document.getElementById("DataState").style.display="none";
     getMonth();
+    readJSON();
 }
 
 function loadDay(ID){
@@ -60,6 +61,18 @@ function changeState(currentID) {
     fillData();
 }
 }
+
+function readJSON(){
+    var mydata = JSON.parse(data);
+    alert(mydata[0].name);
+    alert(mydata[0].age);
+    alert(mydata[1].name);
+    alert(mydata[1].age);
+}
+
+
+
+
 
 function changeMonthUp(Month){
     Month = parseInt(Month) - 1;
