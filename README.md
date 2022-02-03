@@ -17,3 +17,7 @@ Then I will improve the breakdown window to show a more colourful and exciting r
 
 I used this tutorial to understand how to change, which state is currently active: https://javascript.plainenglish.io/create-a-single-page-website-using-node-js-and-express-js-a0b53e396e4f
 As well as W3Schools.com for general help for the javascript.
+
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_parseint
+
+https://www.w3schools.com/js/js_json.asp
