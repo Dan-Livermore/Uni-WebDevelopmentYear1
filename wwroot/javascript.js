@@ -4,7 +4,6 @@ function hideStates(){
     document.getElementById("CalendarState").style.display="none";
     document.getElementById("DataState").style.display="none";
     getMonth();
-    readJSON();
 }
 
 function loadDay(ID){
@@ -27,6 +26,8 @@ function storeData(title, aname, tspent, tused){
 
     var z = "Times Used:       " + tused;
     localStorage.setItem("d", z);
+
+    writeJSON(); 
     
 }
 
@@ -62,12 +63,18 @@ function changeState(currentID) {
 }
 }
 
-function readJSON(){
-    var mydata = JSON.parse(data);
-    alert(mydata[0].name);
-    alert(mydata[0].age);
-    alert(mydata[1].name);
-    alert(mydata[1].age);
+function writeJSON(){
+    fs.readFile('user.json', 'utf-8', (err, data) => {
+        if (err) {
+            throw err;
+        }
+    
+        // parse JSON object
+        const user = JSON.parse(data.toString());
+    
+        // print JSON object
+        console.log(user);
+    });
 }
 
 
