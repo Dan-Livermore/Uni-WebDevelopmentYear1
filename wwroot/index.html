@@ -35,8 +35,9 @@
 
     <!-- Calendar Section -->
    <div class="Calendar" id="CalendarState">
+        <button id="button1" type="button" onclick="changeMonthUp(document.getElementsByClassName('CalendarYearTitle').id)">◀</button>
         <h1 id="0" class="CalendarYearTitle"> Month Year</h2>
-        <p></p>
+        <button id="button2" type="button" onclick="changeMonthDown(document.getElementsByClassName('CalendarYearTitle').id)">▶</button> 
         
         <div class="GridContainer">
             <!-- Creates a grid that is 6x7 elements in size, the first row displays the days of the week while the rest show the calendar-->
@@ -100,11 +101,6 @@
             <div id="Item41" class="Active" onclick="LoadDay(this.id)">41</div>
             <div id="Item42" class="Active" onclick="LoadDay(this.id)">42</div>
         </div>
-        
-        <button type="button" onclick="changeMonthUp(document.getElementsByClassName('CalendarYearTitle').id)">Up</button>
-        <button type="button" onclick="changeMonthDown(document.getElementsByClassName('CalendarYearTitle').id)">Down</button> 
-
-
     </div>
    
     <!-- Data Section -->

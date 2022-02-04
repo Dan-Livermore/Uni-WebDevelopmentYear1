@@ -31,9 +31,25 @@
     padding: 25px 0 0 100px;
 }
 
+.Calendar h1, button{
+    display: inline-block;
+}
+
 .Calendar h1{
-    padding-left: 675px;
+    text-align: center;
+    font-size: 32px;
+    width: 42%;
     
+}
+
+.Calendar button{
+    height: 60px;
+    width: 60px;
+    font-size: 80;
+}
+
+#button1{
+    margin-left: 25%;
 }
 
 

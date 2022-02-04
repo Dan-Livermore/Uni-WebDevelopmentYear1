@@ -31,7 +31,6 @@ function storeData(title, aname, tspent, tused){
     
 }
 
-
 function fillData(){
     // The elements on the Breakdown state are corrected using the data stored in the local storage.
     document.getElementById("BreakdownDate").innerHTML = localStorage.getItem("a");
@@ -39,7 +38,6 @@ function fillData(){
     document.getElementById("BreakdownTimeSpent").innerHTML = localStorage.getItem("c");
     document.getElementById("BreakdownTimesUsed").innerHTML = localStorage.getItem("d");
 }
-
 
 function changeState(currentID) {
     // This hides all other states but the one that is currently loaded and if it is on the breakdown state, it attempts to fill the placeholder values with ones stored locally
@@ -62,24 +60,6 @@ function changeState(currentID) {
     fillData();
 }
 }
-
-function writeJSON(){
-    fs.readFile('user.json', 'utf-8', (err, data) => {
-        if (err) {
-            throw err;
-        }
-    
-        // parse JSON object
-        const user = JSON.parse(data.toString());
-    
-        // print JSON object
-        console.log(user);
-    });
-}
-
-
-
-
 
 function changeMonthUp(Month){
     Month = parseInt(Month) - 1;
