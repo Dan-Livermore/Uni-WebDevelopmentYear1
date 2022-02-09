@@ -17,7 +17,7 @@ function storeData(title, aname, tspent, tused){
     // The users data is enterred and stored into local storage so it doesnt get deleted when changing states.
     var w  = "Day:             " + title;
     localStorage.setItem("a", w);
-
+    // test
     var x = "App Name:         " + aname;
     localStorage.setItem("b", x);
 
@@ -27,8 +27,14 @@ function storeData(title, aname, tspent, tused){
     var z = "Times Used:       " + tused;
     localStorage.setItem("d", z);
 
-    writeJSON(); 
-    
+    writeJSON();
+}
+
+function writeJSON(){
+    const file = require('fs');
+    fs.readFile('data.json', 'utf-8', (err, jsonString =>{
+       console.log(jsonString); 
+    })
 }
 
 function fillData(){
