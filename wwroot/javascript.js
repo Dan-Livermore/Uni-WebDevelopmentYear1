@@ -27,15 +27,15 @@ function storeData(title, aname, tspent, tused){
     var z = "Times Used:       " + tused;
     localStorage.setItem("d", z);
 
+    document.getElementById("DataState").style.display = "none";
     writeJSON();
 }
 
-/* function writeJSON(){
+function writeJson() {
     const file = require('fs');
-    fs.readFile('data.json', 'utf-8', (err, jsonString =>{
-       console.log(jsonString); 
-    })
-}*/
+    
+}
+
 
 function fillData(){
     // The elements on the Breakdown state are corrected using the data stored in the local storage.
@@ -67,19 +67,19 @@ function changeState(currentID) {
 }
 }
 
-function changeMonthUp(Month){
+function changeMonthUp(Month) {
     Month = parseInt(Month) - 1;
     if (Month > -1)
         updateCalendar(Month);
 }
 
-function changeMonthDown(Month){
+function changeMonthDown(Month) {
     Month = parseInt(Month) + 1;
     if (Month < 12)
         updateCalendar(Month);
 }
 
-function getMonth(){
+function getMonth() {
     var Month = new Date();
     Month = Month.getMonth();
     updateCalendar(Month);

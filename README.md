@@ -21,3 +21,5 @@ As well as W3Schools.com for general help for the javascript.
 https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_parseint
 
 https://www.w3schools.com/js/js_json.asp
+
+https://stackoverflow.com/questions/2881307/can-i-have-two-javascript-onclick-events-in-one-element
