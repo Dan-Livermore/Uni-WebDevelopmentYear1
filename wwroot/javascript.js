@@ -1,4 +1,6 @@
-function hideStates(){
+var numberofitmes = 0;
+
+function hideStates() {
     // This function hides the other states so when the application is first loaded, only the account state is shown.
     document.getElementById("BreakdownState").style.display="none";
     document.getElementById("CalendarState").style.display="none";
@@ -27,22 +29,40 @@ function storeData(title, aname, tspent, tused){
     var z = "Times Used:       " + tused;
     localStorage.setItem("d", z);
 
-    document.getElementById("DataState").style.display = "none";
-    writeJSON();
+    document.getElementsByClassName("Data").style.display = "none";
+    numberofitmes += 1;
 }
 
+/*
 function writeJson() {
     const file = require('fs');
     
 }
+*/
 
 
 function fillData(){
     // The elements on the Breakdown state are corrected using the data stored in the local storage.
-    document.getElementById("BreakdownDate").innerHTML = localStorage.getItem("a");
-    document.getElementById("BreakdownAppName").innerHTML = localStorage.getItem("b");
-    document.getElementById("BreakdownTimeSpent").innerHTML = localStorage.getItem("c");
-    document.getElementById("BreakdownTimesUsed").innerHTML = localStorage.getItem("d");
+    var store = "Breakdown" + numberofitmes;
+    if (numberofitmes == 0) {
+        document.getElementById("BreakdownDate1").innerHTML = localStorage.getItem("a");
+        document.getElementById("BreakdownAppName1").innerHTML = localStorage.getItem("b");
+        document.getElementById("BreakdownTimeSpent1").innerHTML = localStorage.getItem("c");
+        document.getElementById("BreakdownTimesUsed1").innerHTML = localStorage.getItem("d");
+    }
+    if (numberofitmes == 1) {
+        document.getElementById("BreakdownDate2").innerHTML = localStorage.getItem("a");
+        document.getElementById("BreakdownAppName2").innerHTML = localStorage.getItem("b");
+        document.getElementById("BreakdownTimeSpent2").innerHTML = localStorage.getItem("c");
+        document.getElementById("BreakdownTimesUsed2").innerHTML = localStorage.getItem("d");
+    }
+    
+    /*
+    let newdate = a;
+    const splitdate = newdate.split(" ");
+    console.log(splitdate[1]);
+    */
+
 }
 
 function changeState(currentID) {

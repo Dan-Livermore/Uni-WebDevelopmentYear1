@@ -35,9 +35,9 @@
 
     <!-- Calendar Section -->
    <div class="Calendar" id="CalendarState">
-        <button id="button1" type="button" onclick="changeMonthUp(document.getElementsByClassName('CalendarYearTitle').id);event.preventDefault()">◀</button>
+        <button id="button1" type="button" onclick="changeMonthUp(document.getElementsByClassName('CalendarYearTitle').id)">◀</button>
         <h1 id="0" class="CalendarYearTitle"> Month Year</h1>
-        <button id="button2" type="button" onclick="changeMonthDown(document.getElementsByClassName('CalendarYearTitle').id);event.preventDefault()">▶</button> 
+        <button id="button2" type="button" onclick="changeMonthDown(document.getElementsByClassName('CalendarYearTitle').id)">▶</button> 
         
         <div class="GridContainer">
             <!-- Creates a grid that is 6x7 elements in size, the first row displays the days of the week while the rest show the calendar-->
@@ -114,7 +114,7 @@
             <input type="text" id="tspent" name="tspent"><br><br>
             <label for="tused"> Times Used: </label>
             <input type="text" id="tused" name="tused"><br><br>
-            <input type="submit" value="Save" onclick="event.preventDefault();storeData(document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value)">
+            <input type="submit" value="Save" onclick="storeData(document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value)">
         </form>
     </div>
 
@@ -122,30 +122,15 @@
     <div class="Breakdown" id="BreakdownState">
         <!-- These placeholder values are replaced once data has been entered.-->
         <h1>Breakdown</h1>
-        <p class="Breakdown1" id="BreakdownDate">date</p>
-        <p class="Breakdown1" id="BreakdownAppName">name</p>
-        <p class="Breakdown1" id="BreakdownTimeSpent">time</p>
-        <p class="Breakdown1" id="BreakdownTimesUsed">uses</p>
+        <p id="BreakdownDate1">date</p>
+        <p id="BreakdownAppName1">name</p>
+        <p id="BreakdownTimeSpent1">time</p>
+        <p id="BreakdownTimesUsed1">uses</p>
 
-        <p class="Breakdown2" id="BreakdownDate">date</p>
-        <p class="Breakdown2" id="BreakdownAppName">name</p>
-        <p class="Breakdown2" id="BreakdownTimeSpent">time</p>
-        <p class="Breakdown2" id="BreakdownTimesUsed">uses</p>
-
-        <p class="Breakdown3" id="BreakdownDate">date</p>
-        <p class="Breakdown3" id="BreakdownAppName">name</p>
-        <p class="Breakdown3" id="BreakdownTimeSpent">time</p>
-        <p class="Breakdown3" id="BreakdownTimesUsed">uses</p>
-
-        <p class="Breakdown4" id="BreakdownDate">date</p>
-        <p class="Breakdown4" id="BreakdownAppName">name</p>
-        <p class="Breakdown4" id="BreakdownTimeSpent">time</p>
-        <p class="Breakdown4" id="BreakdownTimesUsed">uses</p>
-
-        <p class="Breakdown5" id="BreakdownDate">date</p>
-        <p class="Breakdown5" id="BreakdownAppName">name</p>
-        <p class="Breakdown5" id="BreakdownTimeSpent">time</p>
-        <p class="Breakdown5" id="BreakdownTimesUsed">uses</p>
+        <p id="BreakdownDate2">date</p>
+        <p id="BreakdownAppName2">name</p>
+        <p id="BreakdownTimeSpent2">time</p>
+        <p id="BreakdownTimesUsed2">uses</p>
     </div>
 
     </body>
