@@ -1,4 +1,6 @@
 var numberofitmes = 0;
+var currentid = 0;
+var Month = 0;
 
 function hideStates() {
     // This function hides the other states so when the application is first loaded, only the account state is shown.
@@ -13,10 +15,12 @@ function loadDay(ID){
     document.getElementById("DataState").style.display="block";
     var title = document.getElementById(ID).innerHTML + " " + document.getElementsByClassName("CalendarYearTitle")[0].innerHTML;
     document.getElementById("title").innerHTML = title;
+    currentid = ID;
 }
 
-function storeData(title, aname, tspent, tused){
+function storeData(id, title, aname, tspent, tused){
     // The users data is enterred and stored into local storage so it doesnt get deleted when changing states.
+    alert(id);
     var w  = "Day:             " + title;
     localStorage.setItem("a", w);
 
@@ -29,8 +33,11 @@ function storeData(title, aname, tspent, tused){
     var z = "Times Used:       " + tused;
     localStorage.setItem("d", z);
 
+    document.getElementById(currentid).innerHTML = document.getElementById(currentid).innerHTML + aname;
+
     document.getElementsByClassName("Data").style.display = "none";
     numberofitmes += 1;
+    event.preventDefault()
 }
 
 /*
@@ -49,8 +56,9 @@ function fillData(){
         document.getElementById("BreakdownAppName1").innerHTML = localStorage.getItem("b");
         document.getElementById("BreakdownTimeSpent1").innerHTML = localStorage.getItem("c");
         document.getElementById("BreakdownTimesUsed1").innerHTML = localStorage.getItem("d");
+        numberofitmes += 1;
     }
-    if (numberofitmes == 1) {
+    else if (numberofitmes == 1) {
         document.getElementById("BreakdownDate2").innerHTML = localStorage.getItem("a");
         document.getElementById("BreakdownAppName2").innerHTML = localStorage.getItem("b");
         document.getElementById("BreakdownTimeSpent2").innerHTML = localStorage.getItem("c");
@@ -100,7 +108,7 @@ function changeMonthDown(Month) {
 }
 
 function getMonth() {
-    var Month = new Date();
+    let Month = new Date();
     Month = Month.getMonth();
     updateCalendar(Month);
 }
