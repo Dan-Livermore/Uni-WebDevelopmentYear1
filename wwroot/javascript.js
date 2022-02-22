@@ -18,9 +18,9 @@ function loadDay(ID){
     currentid = ID;
 }
 
-function storeData(id, title, aname, tspent, tused){
+function storeData(id, title, aname, tspent, tused) {
     // The users data is enterred and stored into local storage so it doesnt get deleted when changing states.
-    alert(id);
+    
     var w  = "Day:             " + title;
     localStorage.setItem("a", w);
 
@@ -37,15 +37,27 @@ function storeData(id, title, aname, tspent, tused){
 
     document.getElementsByClassName("Data").style.display = "none";
     numberofitmes += 1;
-    event.preventDefault()
-}
-
-/*
-function writeJson() {
-    const file = require('fs');
+    writeJSON(a, b, c, d);
     
 }
-*/
+
+function writeJSON(a,b,c,d) {
+    var data = {
+        day: a,
+        appname: b,
+        timespent: c,
+        timesused: d
+    }
+    var jsonData = JSON.stringify(data);
+
+    var fs = require('fs');
+    fs.writeFile("test.txt", jsonData, function (err) {
+        if (err) {
+            console.log(err);
+        }
+    });
+    aler("meo");
+}
 
 
 function fillData(){
