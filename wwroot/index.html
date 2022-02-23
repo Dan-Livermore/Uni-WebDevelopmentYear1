@@ -115,8 +115,9 @@
             <input type="text" id="tspent" name="tspent"><br><br>
             <label for="tused"> Times Used: </label>
             <input type="text" id="tused" name="tused"><br><br>
-            <input type="submit" value="Save" onclick="storeData(this.id, document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value)">
-        </form>
+             </form>
+        <input type="submit" value="Save" onclick="event.preventDefault();storeData(document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value)">
+       
     </div>
 
     <!-- Breakdown Section -->

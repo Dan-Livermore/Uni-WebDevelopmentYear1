@@ -23,3 +23,5 @@ https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_parseint
 https://www.w3schools.com/js/js_json.asp
 
 https://stackoverflow.com/questions/2881307/can-i-have-two-javascript-onclick-events-in-one-element
+
+https://stackoverflow.com/questions/34156282/how-do-i-save-json-to-local-text-file

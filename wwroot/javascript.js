@@ -1,4 +1,4 @@
-var numberofitmes = 0;
+let saveddata = [];
 var currentid = 0;
 var Month = 0;
 
@@ -18,45 +18,24 @@ function loadDay(ID){
     currentid = ID;
 }
 
-function storeData(id, title, aname, tspent, tused) {
-    // The users data is enterred and stored into local storage so it doesnt get deleted when changing states.
     
-    var w  = "Day:             " + title;
-    localStorage.setItem("a", w);
+function storeData(title, aname, tspent, tused) {
 
-    var x = "App Name:         " + aname;
-    localStorage.setItem("b", x);
-
-    var y = "Total Time Spent: " + tspent + " minutes";
-    localStorage.setItem("c", y);
-
-    var z = "Times Used:       " + tused;
-    localStorage.setItem("d", z);
-
-    document.getElementById(currentid).innerHTML = document.getElementById(currentid).innerHTML + aname;
-
-    document.getElementsByClassName("Data").style.display = "none";
-    numberofitmes += 1;
-    writeJSON(a, b, c, d);
-    
-}
-
-function writeJSON(a,b,c,d) {
-    var data = {
-        day: a,
-        appname: b,
-        timespent: c,
-        timesused: d
+    let Subject = {
+        User: "hehe one",
+        Day: title,
+        AppName: aname,
+        TimeSpent: tspent,
+        TimesUsed: tused,
     }
-    var jsonData = JSON.stringify(data);
+    
+    saveddata.push(Subject);
 
-    var fs = require('fs');
-    fs.writeFile("test.txt", jsonData, function (err) {
-        if (err) {
-            console.log(err);
-        }
-    });
-    aler("meo");
+    console.log(saveddata);
+
+
+    localStorage.setItem('DepressedWayfarers data', JSON.stringify(saveddata));
+    
 }
 
 
