@@ -4,12 +4,20 @@ function changeMonthUp(Month) {
     Month = parseInt(Month) - 1;
     if (Month > -1)
         updateCalendar(Month);
+    if (Month <= -1) {
+        Month = 11
+        updateCalendar(Month);
+    }
 }
 
 function changeMonthDown(Month) {
     Month = parseInt(Month) + 1;
     if (Month < 12)
         updateCalendar(Month);
+    if (Month >= 12) {
+        Month = 0
+        updateCalendar(Month);
+    }
 }
 
 function selectMonth() {

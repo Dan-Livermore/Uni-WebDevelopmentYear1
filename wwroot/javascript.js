@@ -49,7 +49,7 @@ function fillData() {
     document.getElementById("BreakdownDate1").innerHTML = "Date:     " + text[1][1].substring(0,text[1][1].length-1);
     document.getElementById("BreakdownAppName1").innerHTML = "App Name:     " + text[2][1].substring(0, text[2][1].length - 1);
     document.getElementById("BreakdownTimeSpent1").innerHTML = "Time Spent:     " + text[3][1].substring(0, text[3][1].length - 1)+ " minutes";
-    document.getElementById("BreakdownTimesUsed1").textContent = "Times Used:     " + text[4][1].substring(0, text[4][1].length - 3);
+    document.getElementById("BreakdownTimesUsed1").textContent = "Times Used:     " + text[4][1].substring(0, text[4][1].length - 2);
     // The elements on the Breakdown state are corrected using the data stored in the local storage.
     //if (itemsstored == 1) {
     //    document.getElementById("BreakdownDate1").innerHTML = localStorage.getItem("Day:" || "[{}]");
