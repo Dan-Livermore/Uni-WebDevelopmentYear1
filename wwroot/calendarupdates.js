@@ -1,4 +1,6 @@
-
+var currentmonth = 0;
+var currentday = new Date();
+currentday = currentday.getDate();
 
 function changeMonthUp(Month) {
     Month = parseInt(Month) - 1;
@@ -21,8 +23,9 @@ function changeMonthDown(Month) {
 }
 
 function selectMonth() {
-    let Month = new Date();
-    Month = Month.getMonth();
+    Month = new Date();
+    var Month = Month.getMonth();
+    currentmonth = Month;
     updateCalendar(Month);
 }
 
@@ -38,6 +41,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday + 5))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
@@ -55,6 +62,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday + 1))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
@@ -72,6 +83,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday + 1))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
@@ -89,6 +104,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday + 4))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
@@ -106,6 +125,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday + 6))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
@@ -123,6 +146,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday + 2))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
@@ -140,6 +167,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday + 4))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
@@ -157,6 +188,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
@@ -174,6 +209,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday + 3))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
@@ -191,6 +230,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday + 5))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
@@ -208,6 +251,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday + 1))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
@@ -225,6 +272,10 @@ function updateCalendar(Month) {
                 j += 1;
                 document.getElementById(item).innerHTML = j;
                 document.getElementById(item).className = "Active";
+                if (Month == currentmonth) {
+                    if (i == (currentday + 3))
+                        document.getElementById(item).className = "Today";
+                }
             } else {
                 document.getElementById(item).innerHTML = "";
                 document.getElementById(item).className = "Empty";
