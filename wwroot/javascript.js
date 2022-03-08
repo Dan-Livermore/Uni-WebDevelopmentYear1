@@ -6,11 +6,11 @@ function hideStates() {
     document.getElementById("BreakdownState").style.display="none";
     document.getElementById("CalendarState").style.display="none";
     document.getElementById("DataState").style.display="none";
-    selectMonth();
+    //selectMonth();
 }
 
 function loadDay(ID){
-    // This takes the name from the calendar and loads it into the data entry state
+    // Loads the data entry section and adds the day to the form.
     document.getElementById("DataState").style.display="block";
     var title = document.getElementById(ID).innerHTML + " " + document.getElementsByClassName("CalendarYearTitle")[0].innerHTML;
     document.getElementById("title").innerHTML = title;
@@ -19,7 +19,7 @@ function loadDay(ID){
 
     
 function storeData(title, aname, tspent, tused) {
-
+    // Formats the data into JSON
     let entry = {
         User: "DepressedWayfarer",
         Day: title,
@@ -27,45 +27,102 @@ function storeData(title, aname, tspent, tused) {
         TimeSpent: tspent,
         TimesUsed: tused,
     }
-    
+    // Adds the new array to the other stored data
     saveddata.push(entry);
     itemsstored += 1;
 
+    // Clears form to show data is stored
+    document.forms[1].reset();
+    alert("Saved");
+
+    // Commits the changes to storage.
     localStorage.setItem('DepressedWayfarers data', JSON.stringify(saveddata));
     
 }
 
 
 function fillData() {
-    var text = localStorage.getItem("DepressedWayfarers data");//.split(",");
-    console.log(text);
+    // Takes the first json array from local storage and splits the data up into each item.
+    var text = localStorage.getItem("DepressedWayfarers data");
     text = text.split(",");
-    console.log(text);
-    text[1] = text[1].split('":\"');
-    text[2] = text[2].split('":\"');
-    text[3] = text[3].split('":\"');
-    text[4] = text[4].split('":\"');
-    console.log();
-    document.getElementById("BreakdownDate1").innerHTML = "Date:     " + text[1][1].substring(0,text[1][1].length-1);
-    document.getElementById("BreakdownAppName1").innerHTML = "App Name:     " + text[2][1].substring(0, text[2][1].length - 1);
-    document.getElementById("BreakdownTimeSpent1").innerHTML = "Time Spent:     " + text[3][1].substring(0, text[3][1].length - 1)+ " minutes";
-    document.getElementById("BreakdownTimesUsed1").textContent = "Times Used:     " + text[4][1].substring(0, text[4][1].length - 2);
-    // The elements on the Breakdown state are corrected using the data stored in the local storage.
-    //if (itemsstored == 1) {
-    //    document.getElementById("BreakdownDate1").innerHTML = localStorage.getItem("Day:" || "[{}]");
-    //    document.getElementById("BreakdownAppName1").innerHTML = localStorage.getItem("AppName");
-    //    document.getElementById("BreakdownTimeSpent1").innerHTML = localStorage.getItem("TimeSpent");
-    //    document.getElementById("BreakdownTimesUsed1").innerHTML = localStorage.getItem("TimesUsed");
-    //}    //else if (itemsstored == 2) {
-    //    document.getElementById("BreakdownDate2").innerHTML = localStorage.getItem("Day");
-    //    document.getElementById("BreakdownAppName2").innerHTML = localStorage.getItem("AppName");
-    //    document.getElementById("BreakdownTimeSpent2").innerHTML = localStorage.getItem("TimeSpent");
-    //    document.getElementById("BreakdownTimesUsed2").innerHTML = localStorage.getItem("TimesUsed");
+    var data = [];
+
+    for (var i = 1; i < text.length; i = i + 5) {
+        text[i] = text[i].split('":\"');
+        text[i] = text[i][1].toString().slice(0, -1);
+        data.push(text[i]);
+        text[i+1] = text[i+1].split('":\"');
+        text[i+1] = text[i+1][1].toString().slice(0, -1);
+        data.push(text[i+1]);
+        text[i+2] = text[i+2].split('":\"');
+        text[i+2] = text[i+2][1].toString().slice(0, -1);
+        data.push(text[i+2]);
+        text[i+3] = text[i+3].split('":\"');
+        if ((text.length-1) === i+3) {
+            text[i+3] = text[i+3][1].toString().slice(0, -3);
+        } else {
+            text[i+3] = text[i+3][1].toString().slice(0, -2);
+        }
+        data.push(text[i+3]);
+    }
+    console.log(data);
+    breakdownTotalHours(data);
+
+
+    
+
+    //text[6] = text[6].split('":\"');
+    //text[6] = text[6][1].toString().slice(0, -1);
+    //data.push(text[6]);
+    //text[7] = text[7].split('":\"');
+    //text[7] = text[7][1].toString().slice(0, -1);
+    //data.push(text[7]);
+    //text[8] = text[8].split('":\"');
+    //text[8] = text[8][1].toString().slice(0, -1);
+    //data.push(text[8]);
+    //text[9] = text[9].split('":\"');
+    //if ((text.length-1) === 9) {
+    //    text[9] = text[9][1].toString().slice(0, -3);
+    //} else {
+    //    text[9] = text[9][1].toString().slice(0, -2);
     //}
+    //data.push(text[9]);
+}
+
+function breakdownMostApps() {
+
+}
+
+function breakdownMostHours() {
+
+}
+
+function breakdownLongestApp() {
+
+}
+
+function breakdownMostUses() {
+
+}
+
+function breakdownTotalHours(data) {
+    var total = 0;
+    for (var i = 0; i < data.length; i = i + 4) {
+        total += parseInt(data[i + 2]);
+    }
+    document.getElementById("TotalHours").innerHTML = total + " Minutes of total screen time!";
+}
+
+function breakdownPercentage() {
+
+}
+
+function breakdownTop5() {
+
 }
 
 function changeState(currentID) {
-    // This hides all other states but the one that is currently loaded and if it is on the breakdown state, it attempts to fill the placeholder values with ones stored locally
+    // This hides all other states but the one that is currently loaded and if it is on the breakdown state
     if (currentID === "Account"){
     document.getElementById("BreakdownState").style.display="none";
     document.getElementById("CalendarState").style.display="none";
@@ -75,13 +132,15 @@ function changeState(currentID) {
     document.getElementById("BreakdownState").style.display="none";
     document.getElementById("CalendarState").style.display="block";
     document.getElementById("AccountState").style.display="none";
-    document.getElementById("DataState").style.display="none";
+    document.getElementById("DataState").style.display = "none";
+     // Loads the current month on the calendar
     selectMonth();
     } else{
     document.getElementById("BreakdownState").style.display="block";
     document.getElementById("CalendarState").style.display="none";
     document.getElementById("AccountState").style.display="none";
     document.getElementById("DataState").style.display="none";
+    // Enters the saved data onto the breakdown page. MUST CHANGE
     fillData();
 }
 }
