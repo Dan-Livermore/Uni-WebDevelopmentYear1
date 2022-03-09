@@ -19,6 +19,7 @@ function loadDay(ID){
 
     
 function storeData(title, aname, tspent, tused) {
+    formatMonth(title);
     // Formats the data into JSON
     let entry = {
         User: "DepressedWayfarer",
@@ -37,8 +38,43 @@ function storeData(title, aname, tspent, tused) {
 
     // Commits the changes to storage.
     localStorage.setItem('DepressedWayfarers data', JSON.stringify(saveddata));
-    
+
 }
+
+function formatMonth(title) {
+    var split = title.split(" ");
+    if (split[0] < 10) {
+        split[0] = "0" + split[0];
+    }
+    title = split[0];
+    if (split[1] === "January") {
+        title += "/01/" + split[2];
+    } else if (split[1] === "February") {
+        title += "/02/" + split[2];
+    } else if (split[1] === "March") {
+        title += "/03/" + split[2];
+    } else if (split[1] === "April") {
+        title += "/04/" + split[2];
+    } else if (split[1] === "May") {
+        title += "/05/" + split[2];
+    } else if (split[1] === "June") {
+        title += "/06/" + split[2];
+    } else if (split[1] === "July") {
+        title += "/07/" + split[2];
+    } else if (split[1] === "August") {
+        title += "/08/" + split[2];
+    } else if (split[1] === "September") {
+        title += "/09/" + split[2];
+    } else if (split[1] === "October") {
+        title += "/10/" + split[2];
+    } else if (split[1] === "November") {
+        title += "/11/" + split[2];
+    } else {
+        title += "/12/" + split[2];
+    }
+}
+
+
 
 
 function fillData() {
@@ -66,43 +102,35 @@ function fillData() {
         data.push(text[i+3]);
     }
     console.log(data);
+    breakdownMostApps(data);
+    breakdownMostHours(data);
+    breakdownLongestApp(data);
+    breakdownMostUses(data);
     breakdownTotalHours(data);
-
-
-    
-
-    //text[6] = text[6].split('":\"');
-    //text[6] = text[6][1].toString().slice(0, -1);
-    //data.push(text[6]);
-    //text[7] = text[7].split('":\"');
-    //text[7] = text[7][1].toString().slice(0, -1);
-    //data.push(text[7]);
-    //text[8] = text[8].split('":\"');
-    //text[8] = text[8][1].toString().slice(0, -1);
-    //data.push(text[8]);
-    //text[9] = text[9].split('":\"');
-    //if ((text.length-1) === 9) {
-    //    text[9] = text[9][1].toString().slice(0, -3);
-    //} else {
-    //    text[9] = text[9][1].toString().slice(0, -2);
-    //}
-    //data.push(text[9]);
+    breakdownPercentage(data);
+    breakdownTop5(data);
 }
 
-function breakdownMostApps() {
+function breakdownMostApps(data) {
 
 }
 
-function breakdownMostHours() {
+function breakdownMostHours(data) {
 
 }
 
-function breakdownLongestApp() {
-
+function breakdownLongestApp(data) {
+   
 }
 
-function breakdownMostUses() {
-
+function breakdownMostUses(data) {
+    var mostuses = data[1];
+    for (var i = 0; i < data.length; i = i + 4) {
+        if (mostuses > data[i + 3]) {
+            mostuses = data[i+1]
+        }
+    }
+    document.getElementById("MostUses").innerHTML = "The app you have used the most is " + mostuses + "!";
 }
 
 function breakdownTotalHours(data) {
@@ -113,12 +141,29 @@ function breakdownTotalHours(data) {
     document.getElementById("TotalHours").innerHTML = total + " Minutes of total screen time!";
 }
 
-function breakdownPercentage() {
+function breakdownPercentage(data) {
 
 }
 
-function breakdownTop5() {
+function breakdownTop5(data) {
+    var one = "";
+    var two = "";
+    var three = "";
+    var four = "";
+    var five = "";
 
+    var elements = data.length / 4;
+    if (elements === 1) {
+        document.getElementById("Top5").innerHTML = "Your Most used app is: " + one + ".";
+    } else if (elements === 2) {
+        document.getElementById("Top5").innerHTML = "Your 2 Most used apps are " + one + "," + two + ".";
+    } else if (elements === 3) {
+        document.getElementById("Top5").innerHTML = "Your 3 Most used apps are: " + one + "," + two + "," + three + ".";
+    } else if (elements === 4) {
+        document.getElementById("Top5").innerHTML = "Your 4 Most used apps are: " + one + "," + two + "," + three + "," + four + ".";
+    } else if (elements > 4) {
+        document.getElementById("Top5").innerHTML = "Your 5 Most used apps are: " + one + "," + two + "," + three + "," + four + "," + five + ".";
+    }
 }
 
 function changeState(currentID) {
