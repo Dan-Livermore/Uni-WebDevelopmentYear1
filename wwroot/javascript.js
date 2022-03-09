@@ -19,11 +19,10 @@ function loadDay(ID){
 
     
 function storeData(title, aname, tspent, tused) {
-    formatMonth(title);
     // Formats the data into JSON
     let entry = {
         User: "DepressedWayfarer",
-        Day: title,
+        Day: formatMonth(title),
         AppName: aname,
         TimeSpent: tspent,
         TimesUsed: tused,
@@ -43,35 +42,37 @@ function storeData(title, aname, tspent, tused) {
 
 function formatMonth(title) {
     var split = title.split(" ");
+
+    if (split[1] === "January") {
+        title = split[2] + "/01/";
+    } else if (split[1] === "February") {
+        title = split[2] + "/02/";
+    } else if (split[1] === "March") {
+        title = split[2] + "/03/";
+    } else if (split[1] === "April") {
+        title = split[2] + "/04/";
+    } else if (split[1] === "May") {
+        title = split[2] + "/05/";
+    } else if (split[1] === "June") {
+        title = split[2] + "/06/";
+    } else if (split[1] === "July") {
+        title = split[2] + "/07/";
+    } else if (split[1] === "August") {
+        title = split[2] + "/08/";
+    } else if (split[1] === "September") {
+        title = split[2] + "/09/";
+    } else if (split[1] === "October") {
+        title = split[2] + "/10/";
+    } else if (split[1] === "November") {
+        title = split[2] + "/11/";
+    } else {
+        title = split[2] + "/12/";
+    }
     if (split[0] < 10) {
         split[0] = "0" + split[0];
     }
-    title = split[0];
-    if (split[1] === "January") {
-        title += "/01/" + split[2];
-    } else if (split[1] === "February") {
-        title += "/02/" + split[2];
-    } else if (split[1] === "March") {
-        title += "/03/" + split[2];
-    } else if (split[1] === "April") {
-        title += "/04/" + split[2];
-    } else if (split[1] === "May") {
-        title += "/05/" + split[2];
-    } else if (split[1] === "June") {
-        title += "/06/" + split[2];
-    } else if (split[1] === "July") {
-        title += "/07/" + split[2];
-    } else if (split[1] === "August") {
-        title += "/08/" + split[2];
-    } else if (split[1] === "September") {
-        title += "/09/" + split[2];
-    } else if (split[1] === "October") {
-        title += "/10/" + split[2];
-    } else if (split[1] === "November") {
-        title += "/11/" + split[2];
-    } else {
-        title += "/12/" + split[2];
-    }
+    title += split[0];
+    return title;
 }
 
 
@@ -124,13 +125,6 @@ function breakdownLongestApp(data) {
 }
 
 function breakdownMostUses(data) {
-    var mostuses = data[1];
-    for (var i = 0; i < data.length; i = i + 4) {
-        if (mostuses > data[i + 3]) {
-            mostuses = data[i+1]
-        }
-    }
-    document.getElementById("MostUses").innerHTML = "The app you have used the most is " + mostuses + "!";
 }
 
 function breakdownTotalHours(data) {
@@ -142,28 +136,53 @@ function breakdownTotalHours(data) {
 }
 
 function breakdownPercentage(data) {
-
+    var earliest = data[0];
+    var latest = data[0];
+    var total = 0;
+    for (var i = 0; i < data.length; i = i + 4) {
+        if (data[i] < earliest) {
+            earliest = data[i];
+        } else if (data[i] > latest) {
+            latest = data[i];
+        }
+        total += parseInt(data[i + 2]);
+    }
+    var daysrecorded = 0;
+    earliest = earliest.split("/");
+    latest = latest.split("/");
+    earliest[0] = parseInt(earliest[0]);
+    earliest[1] = parseInt(earliest[1]);
+    earliest[2] = parseInt(earliest[2]);
+    latest[0] = parseInt(latest[0]);
+    latest[1] = parseInt(latest[1]);
+    latest[2] = parseInt(latest[2]);
+    var found = false
+    while (found != true) {
+        if (earliest[1] === latest[1]) {
+            daysrecorded += latest[2];
+            found = true;
+        }
+        else if (earliest[1] === 02) {
+            daysrecorded += 28 - earliest[2];
+            earliest[1] = 03;
+            earliest[2] = 00;
+        } else if (earliest[1] === 04 || earliest[1] === 06 || earliest[1] === 09 || earliest[1] === 11) {
+            daysrecorded += 30 - earliest[2];
+            earliest[1] = earliest[1] + 1;
+            earliest[2] = 00;
+        } else {
+            daysrecorded += 31 - earliest[2];
+            earliest[1] = earliest[1] + 1;
+            earliest[2] = 00;
+        }
+    }
+    daysrecorded *= 24 * 60;
+    var percentage = Math.round((total / daysrecorded * 100));
+    document.getElementById("PercentOfLife").innerHTML = "You have spent " + percentage + "% of your life using apps!";
 }
 
 function breakdownTop5(data) {
-    var one = "";
-    var two = "";
-    var three = "";
-    var four = "";
-    var five = "";
 
-    var elements = data.length / 4;
-    if (elements === 1) {
-        document.getElementById("Top5").innerHTML = "Your Most used app is: " + one + ".";
-    } else if (elements === 2) {
-        document.getElementById("Top5").innerHTML = "Your 2 Most used apps are " + one + "," + two + ".";
-    } else if (elements === 3) {
-        document.getElementById("Top5").innerHTML = "Your 3 Most used apps are: " + one + "," + two + "," + three + ".";
-    } else if (elements === 4) {
-        document.getElementById("Top5").innerHTML = "Your 4 Most used apps are: " + one + "," + two + "," + three + "," + four + ".";
-    } else if (elements > 4) {
-        document.getElementById("Top5").innerHTML = "Your 5 Most used apps are: " + one + "," + two + "," + three + "," + four + "," + five + ".";
-    }
 }
 
 function changeState(currentID) {
