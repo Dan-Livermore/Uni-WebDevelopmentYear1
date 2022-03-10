@@ -182,7 +182,45 @@ function breakdownPercentage(data) {
 }
 
 function breakdownTop5(data) {
+    var one = "";
+    var two = "";
+    var three = "";
+    var four = "";
+    var five = "";
 
+    var elements = data.length / 4;
+    var combinedapps = [];
+
+    for (var i = 0; i < data.length; i = i + 4) {
+        var found = false;
+        for (var j = 0; j < combinedapps.length; j = j + 2) {
+            //if name already there, add to it. else add name and hours
+            if (data[i + 1] === combinedapps[j]) {
+                console.log("meow");
+                combinedapps[j + 1] = parseInt(combinedapps[j+1]) + parseInt(data[i + 2]);
+                found = true;
+            }
+        }
+        if (found === false) {
+            combinedapps.push(data[i + 1]);
+            combinedapps.push(parseInt(data[i + 2]));
+        }
+        
+    }
+    console.log(combinedapps);
+
+
+    if (elements === 1) {
+        document.getElementById("Top5").innerHTML = "Your Most used app is: " + one + ".";
+    } else if (elements === 2) {
+        document.getElementById("Top5").innerHTML = "Your 2 Most used apps are " + one + "," + two + ".";
+    } else if (elements === 3) {
+        document.getElementById("Top5").innerHTML = "Your 3 Most used apps are: " + one + "," + two + "," + three + ".";
+    } else if (elements === 4) {
+        document.getElementById("Top5").innerHTML = "Your 4 Most used apps are: " + one + "," + two + "," + three + "," + four + ".";
+    } else if (elements > 4) {
+        document.getElementById("Top5").innerHTML = "Your 5 Most used apps are: " + one + "," + two + "," + three + "," + four + "," + five + ".";
+    }
 }
 
 function changeState(currentID) {
