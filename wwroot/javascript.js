@@ -245,23 +245,22 @@ function Top5TwoElements(combinedapps, a, b) {
 
 function Top5ThreeElements(combinedapps, a, b, c) {
     if (combinedapps[a] > combinedapps[b]) {
-        if (combinedapps[a] < combinedapps[c]) {
-            //c
-            one = combinedapps[c - 1];
-            var output = Top5TwoElements(combinedapps, a, b);
-        }
-        else {
+        if (combinedapps[a] > combinedapps[c]) {
             //a
-            one = combinedapps[a - 1];
+            var one = combinedapps[a - 1];
             var output = Top5TwoElements(combinedapps, b, c);
         }
-    } else {
+        else {
+            //c
+            var one = combinedapps[c - 1];
+            var output = Top5TwoElements(combinedapps, a, b);
+        }
+    }
+    else {
         //b
-        one = combinedapps[b - 1];
+        var one = combinedapps[b - 1];
         var output = Top5TwoElements(combinedapps, a, c);
     }
-    console.log(one);
-    console.log(output);
     two = output[0];
     three = output[1];
     return [ one, two, three ];
