@@ -80,36 +80,60 @@ function formatMonth(title) {
 
 function fillData() {
     // Takes the first json array from local storage and splits the data up into each item.
-    var text = localStorage.getItem("DepressedWayfarers data");
-    text = text.split(",");
     var data = [];
+    var combinedapps = [];
+    data, combinedapps = prepareData(data, combinedapps);
 
-    for (var i = 1; i < text.length; i = i + 5) {
-        text[i] = text[i].split('":\"');
-        text[i] = text[i][1].toString().slice(0, -1);
-        data.push(text[i]);
-        text[i+1] = text[i+1].split('":\"');
-        text[i+1] = text[i+1][1].toString().slice(0, -1);
-        data.push(text[i+1]);
-        text[i+2] = text[i+2].split('":\"');
-        text[i+2] = text[i+2][1].toString().slice(0, -1);
-        data.push(text[i+2]);
-        text[i+3] = text[i+3].split('":\"');
-        if ((text.length-1) === i+3) {
-            text[i+3] = text[i+3][1].toString().slice(0, -3);
-        } else {
-            text[i+3] = text[i+3][1].toString().slice(0, -2);
-        }
-        data.push(text[i+3]);
-    }
-    console.log(data);
     breakdownMostApps(data);
     breakdownMostHours(data);
     breakdownLongestApp(data);
     breakdownMostUses(data);
     breakdownTotalHours(data);
     breakdownPercentage(data);
-    breakdownTop5(data);
+    breakdownTop5(combinedapps);
+}
+
+function prepareData(data, combinedapps) {
+    var text = localStorage.getItem("DepressedWayfarers data");
+    text = text.split(",");
+
+    for (var i = 1; i < text.length; i = i + 5) {
+        text[i] = text[i].split('":\"');
+        text[i] = text[i][1].toString().slice(0, -1);
+        data.push(text[i]);
+        text[i + 1] = text[i + 1].split('":\"');
+        text[i + 1] = text[i + 1][1].toString().slice(0, -1);
+        data.push(text[i + 1]);
+        text[i + 2] = text[i + 2].split('":\"');
+        text[i + 2] = text[i + 2][1].toString().slice(0, -1);
+        data.push(text[i + 2]);
+        text[i + 3] = text[i + 3].split('":\"');
+        if ((text.length - 1) === i + 3) {
+            text[i + 3] = text[i + 3][1].toString().slice(0, -3);
+        } else {
+            text[i + 3] = text[i + 3][1].toString().slice(0, -2);
+        }
+        data.push(text[i + 3]);
+    }
+
+    for (var i = 0; i < data.length; i = i + 4) {
+        var found = false;
+        for (var j = 0; j < combinedapps.length; j = j + 2) {
+            //if name already there, add to it. else add name and hours
+            if (data[i + 1] === combinedapps[j]) {
+                combinedapps[j + 1] = parseInt(combinedapps[j + 1]) + parseInt(data[i + 2]);
+                found = true;
+            }
+        }
+        if (found === false) {
+            combinedapps.push(data[i + 1]);
+            combinedapps.push(parseInt(data[i + 2]));
+        }
+
+    }
+    console.log(data);
+    console.log(combinedapps);
+    return data, combinedapps;
 }
 
 function breakdownMostApps(data) {
@@ -181,45 +205,79 @@ function breakdownPercentage(data) {
     document.getElementById("PercentOfLife").innerHTML = "You have spent " + percentage + "% of your life using apps!";
 }
 
-function breakdownTop5(data) {
+function breakdownTop5(combinedapps) {
     var one = "";
     var two = "";
     var three = "";
     var four = "";
     var five = "";
 
-    var elements = data.length / 4;
-    var combinedapps = [];
+    var elements = combinedapps.length / 2;
+   
+    if (elements === 1) {
+        document.getElementById("Top5").innerHTML = "Your Most used app is: " + combinedapps[0] + ".";
 
-    for (var i = 0; i < data.length; i = i + 4) {
-        var found = false;
-        for (var j = 0; j < combinedapps.length; j = j + 2) {
-            //if name already there, add to it. else add name and hours
-            if (data[i + 1] === combinedapps[j]) {
-                console.log("meow");
-                combinedapps[j + 1] = parseInt(combinedapps[j+1]) + parseInt(data[i + 2]);
-                found = true;
+
+    } else if (elements === 2) {
+        if (combinedapps[1] > combinedapps[3]) {
+            one = combinedapps[0];
+            two = combinedapps[2];
+        } else {
+            one = combinedapps[2];
+            two = combinedapps[0];
+        }
+        document.getElementById("Top5").innerHTML = "Your 2 Most used apps are " + one + ", " + two + ".";
+
+
+    } else if (elements === 3) {
+        if (combinedapps[1] > combinedapps[3] || combinedapps[1] > combinedapps[5]) {
+            one = combinedapps[0];
+            if (combinedapps[3] > combinedapps[5]) {
+                two = combinedapps[2];
+                three = combinedapps[4];
+            } else {
+                two = combinedapps[4];
+                three = combinedapps[2];
+            }
+        } else if (combinedapps[3] > combinedapps[1] || combinedapps[3] > combinedapps[5]) {
+            one = combinedapps[2];
+            if (combinedapps[1] > combinedapps[5]) {
+                two = combinedapps[0];
+                three = combinedapps[4];
+            } else {
+                two = combinedapps[4];
+                three = combinedapps[0];
+            }
+        } else {
+            one = combinedapps[4];
+            if (combinedapps[3] > combinedapps[1]) {
+                two = combinedapps[2];
+                three = combinedapps[0];
+            } else {
+                two = combinedapps[0];
+                three = combinedapps[2];
             }
         }
-        if (found === false) {
-            combinedapps.push(data[i + 1]);
-            combinedapps.push(parseInt(data[i + 2]));
-        }
-        
-    }
-    console.log(combinedapps);
+        document.getElementById("Top5").innerHTML = "Your 3 Most used apps are: " + one + ", " + two + ", " + three + ".";
 
 
-    if (elements === 1) {
-        document.getElementById("Top5").innerHTML = "Your Most used app is: " + one + ".";
-    } else if (elements === 2) {
-        document.getElementById("Top5").innerHTML = "Your 2 Most used apps are " + one + "," + two + ".";
-    } else if (elements === 3) {
-        document.getElementById("Top5").innerHTML = "Your 3 Most used apps are: " + one + "," + two + "," + three + ".";
     } else if (elements === 4) {
-        document.getElementById("Top5").innerHTML = "Your 4 Most used apps are: " + one + "," + two + "," + three + "," + four + ".";
+        one = combinedapps[0];
+        two = combinedapps[2];
+        three = combinedapps[4];
+        four = combinedapps[6];
+        document.getElementById("Top5").innerHTML = "Your 4 Most used apps are: " + one + ", " + two + ", " + three + ", " + four + ".";
+
+
     } else if (elements > 4) {
-        document.getElementById("Top5").innerHTML = "Your 5 Most used apps are: " + one + "," + two + "," + three + "," + four + "," + five + ".";
+
+
+        one = combinedapps[0];
+        two = combinedapps[2];
+        three = combinedapps[4];
+        four = combinedapps[6];
+        five = combinedapps[8];
+        document.getElementById("Top5").innerHTML = "Your 5 Most used apps are: " + one + ", " + two + ", " + three + ", " + four + ", " + five + ".";
     }
 }
 
