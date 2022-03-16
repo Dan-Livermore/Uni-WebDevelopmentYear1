@@ -226,7 +226,7 @@ function breakdownTop5(combinedapps) {
             one = combinedapps[2];
             two = combinedapps[0];
         }
-        document.getElementById("Top5").innerHTML = "Your 2 Most used apps are " + one + ", " + two + ".";
+        document.getElementById("Top5").innerHTML = "Your 2 Most used apps are " + one + " and " + two + ".";
 
 
     } else if (elements === 3) {
@@ -258,15 +258,134 @@ function breakdownTop5(combinedapps) {
                 three = combinedapps[2];
             }
         }
-        document.getElementById("Top5").innerHTML = "Your 3 Most used apps are: " + one + ", " + two + ", " + three + ".";
+        document.getElementById("Top5").innerHTML = "Your 3 Most used apps are: " + one + ", " + two + " and " + three + ".";
 
 
     } else if (elements === 4) {
-        one = combinedapps[0];
-        two = combinedapps[2];
-        three = combinedapps[4];
-        four = combinedapps[6];
-        document.getElementById("Top5").innerHTML = "Your 4 Most used apps are: " + one + ", " + two + ", " + three + ", " + four + ".";
+
+        if (combinedapps[1] > combinedapps[3] || combinedapps[1] > combinedapps[5] || combinedapps[1] > combinedapps[7]) {
+            one = combinedapps[0];
+            if (combinedapps[3] > combinedapps[5] || combinedapps[3] > combinedapps[7]) {
+                two = combinedapps[2];
+                if (combinedapps[5] > combinedapps[7]) {
+                    three = combinedapps[4];
+                    four = combinedapps[6];
+                } else {
+                    three = combinedapps[6];
+                    four = combinedapps[4];
+                }
+            } else if (combinedapps[5] > combinedapps[3] || combinedapps[5] > combinedapps[7]) {
+                two = combinedapps[4];
+                if (combinedapps[3] > combinedapps[7]) {
+                    three = combinedapps[2];
+                    four = combinedapps[6];
+                } else {
+                    three = combinedapps[6];
+                    four = combinedapps[2];
+                }
+            } else {
+                two = combinedapps[6];
+                if (combinedapps[3] > combinedapps[5]) {
+                    three = combinedapps[2];
+                    four = combinedapps[4];
+                } else {
+                    three = combinedapps[4];
+                    four = combinedapps[2];
+                }
+            }
+        } else if (combinedapps[3] > combinedapps[1] || combinedapps[3] > combinedapps[5] || combinedapps[3] > combinedapps[7]) {
+            one = combinedapps[2];
+            if (combinedapps[1] > combinedapps[5] || combinedapps[1] > combinedapps[7]) {
+                two = combinedapps[0];
+                if (combinedapps[5] > combinedapps[7]) {
+                    three = combinedapps[4];
+                    four = combinedapps[6];
+                } else {
+                    three = combinedapps[6];
+                    four = combinedapps[4];
+                }
+            } else if (combinedapps[7] > combinedapps[1] || combinedapps[7] > combinedapps[5]) {
+                two = combinedapps[6];
+                if (combinedapps[5] > combinedapps[1]) {
+                    three = combinedapps[4];
+                    four = combinedapps[0];
+                } else {
+                    three = combinedapps[0];
+                    four = combinedapps[4];
+                }
+            } else if (combinedapps[5] > combinedapps[1] || combinedapps[5] > combinedapps[7]) {
+                two = combinedapps[4];
+                if (combinedapps[1] > combinedapps[7]) {
+                    three = combinedapps[0];
+                    four = combinedapps[6];
+                } else {
+                    three = combinedapps[6];
+                    four = combinedapps[0];
+                }
+            } 
+        } else if (combinedapps[5] > combinedapps[1] || combinedapps[5] > combinedapps[3] || combinedapps[5] >  combinedapps[7]) {
+            one = combinedapps[4];
+            if (combinedapps[3] > combinedapps[1] || combinedapps[3] > combinedapps[7]) {
+                two = combinedapps[2];
+                if (combinedapps[1] > combinedapps[7]) {
+                    three = combinedapps[0];
+                    four = combinedapps[6];
+                } else {
+                    three = combinedapps[6];
+                    four = combinedapps[0];
+                }
+            } else if (combinedapps[1] > combinedapps[3] || combinedapps[1] > combinedapps[7]) {
+                two = combinedapps[0];
+                if (combinedapps[3] > combinedapps[7]) {
+                    three = combinedapps[2];
+                    four = combinedapps[6];
+                } else {
+                    three = combinedapps[6];
+                    four = combinedapps[2];
+                }
+            } else {
+                two = combinedapps[6];
+                if (combinedapps[1] > combinedapps[3]) {
+                    three = combinedapps[0];
+                    four = combinedapps[2];
+                } else {
+                    three = combinedapps[2];
+                    four = combinedapps[0];
+                }
+            }
+        } else {
+            one = combinedapps[6];
+            if (combinedapps[1] > combinedapps[3] || combinedapps[1] > combinedapps[5]) {
+                two = combinedapps[0];
+                if (combinedapps[3] > combinedapps[5]) {
+                    three = combinedapps[2];
+                    four = combinedapps[4];
+                } else {
+                    three = combinedapps[4];
+                    four = combinedapps[2];
+                }
+            } else if (combinedapps[5] > combinedapps[3] || combinedapps[5] > combinedapps[1]) {
+                two = combinedapps[4];
+                if (combinedapps[1] > combinedapps[3]) {
+                    three = combinedapps[0];
+                    four = combinedapps[2];
+                } else {
+                    three = combinedapps[2];
+                    four = combinedapps[0];
+                }
+            } else {
+                two = combinedapps[2];
+                if (combinedapps[1] > combinedapps[5]) {
+                    three = combinedapps[0];
+                    four = combinedapps[4];
+                } else {
+                    three = combinedapps[4];
+                    four = combinedapps[0];
+                }
+            }
+        }
+
+        document.getElementById("Top5").innerHTML = "Your 4 Most used apps are: " + one + ", " + two + ", " + three + " and " + four + ".";
 
 
     } else if (elements > 4) {
@@ -277,7 +396,7 @@ function breakdownTop5(combinedapps) {
         three = combinedapps[4];
         four = combinedapps[6];
         five = combinedapps[8];
-        document.getElementById("Top5").innerHTML = "Your 5 Most used apps are: " + one + ", " + two + ", " + three + ", " + four + ", " + five + ".";
+        document.getElementById("Top5").innerHTML = "Your 5 Most used apps are: " + one + ", " + two + ", " + three + ", " + four + " and " + five + ".";
     }
 }
 
