@@ -531,7 +531,6 @@ function breakdownTop5(combinedapps) {
 
 
 
-
         } else if (combinedapps[3] > combinedapps[1] || combinedapps[3] > combinedapps[5] || combinedapps[3] > combinedapps[7] || combinedapps[3] > combinedapps[9]) {
             one = combinedapps[2];
         } else if (combinedapps[5] > combinedapps[1] || combinedapps[5] > combinedapps[3] || combinedapps[5] > combinedapps[7] || combinedapps[5] > combinedapps[9]) {
