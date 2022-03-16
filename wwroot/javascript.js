@@ -389,7 +389,157 @@ function breakdownTop5(combinedapps) {
 
 
     } else if (elements > 4) {
+        // Room to upgrade and pick the 5 most used apps
+        if (combinedapps[1] > combinedapps[3] || combinedapps[1] > combinedapps[5] || combinedapps[1] > combinedapps[7] || combinedapps[1] > combinedapps[9]) {
+            one = combinedapps[0];
+            if (combinedapps[3] > combinedapps[5] || combinedapps[3] > combinedapps[7] || combinedapps[3] > combinedapps[9]) {
+                two = combinedapps[2];
+                if (combinedapps[5] > combinedapps[7] || combinedapps[5] > combinedapps[7]) {
+                    three = combinedapps[4];
+                    if (combinedapps[7] > combinedapps[9]) {
+                        four = combinedapps[6];
+                        five = combinedapps[8];
+                    } else {
+                        four = combinedapps[8];
+                        five = combinedapps[6];
+                    }
+                } else if (combinedapps[7] > combinedapps[5] || combinedapps[7] > combinedapps[9]) {
+                    three = combinedapps[6];
+                    if (combinedapps[5] > combinedapps[9]) {
+                        four = combinedapps[4];
+                        five = combinedapps[8];
+                    } else {
+                        four = combinedapps[8];
+                        five = combinedapps[4];
+                    }
+                } else if (combinedapps[9] > combinedapps[5] || combinedapps[9] > combinedapps[7]) {
+                    three = combinedapps[8];
+                    if (combinedapps[5] > combinedapps[7]) {
+                        four = combinedapps[4];
+                        five = combinedapps[6];
+                    } else {
+                        four = combinedapps[6];
+                        five = combinedapps[4];
+                    }
+                }
+            } else if (combinedapps[5] > combinedapps[3] || combinedapps[5] > combinedapps[7] || combinedapps[5] > combinedapps[9]) {
+                two = combinedapps[4];
+                if (combinedapps[3] > combinedapps[7] || combinedapps[3] > combinedapps[9]) {
+                    three = combinedapps[2];
+                    if (combinedapps[7] > combinedapps[9]) {
+                        four = combinedapps[6];
+                        five = combinedapps[8];
+                    }
+                    else {
+                        four = combinedapps[8];
+                        five = combinedapps[6];
+                    }
+                } else if (combinedapps[7] > combinedapps[3] || combinedapps[7] > combinedapps[9]) {
+                    three = combinedapps[6];
+                    if (combinedapps[3] > combinedapps[9]) {
+                        four = combinedapps[2];
+                        five = combinedapps[8];
+                    }
+                    else {
+                        four = combinedapps[8];
+                        five = combinedapps[2];
+                    }
+                } else if (combinedapps[9] > combinedapps[5] || combinedapps[9] > combinedapps[7]) {
+                    three = combinedapps[8];
+                    if (combinedapps[5] > combinedapps[7]) {
+                        four = combinedapps[4];
+                        five = combinedapps[6];
+                    }
+                    else {
+                        four = combinedapps[6];
+                        five = combinedapps[4];
+                    }
+                }
+            } else if (combinedapps[7] > combinedapps[3] || combinedapps[7] > combinedapps[5] || combinedapps[7] > combinedapps[9]) {
+                two = combinedapps[6];
+                if (combinedapps[3] > combinedapps[5] || combinedapps[3] > combinedapps[9]) {
+                    three = combinedapps[2];
+                    if (combinedapps[5] > combinedapps[9]) {
+                        four = combinedapps[4];
+                        five = combinedapps[8];
+                    }
+                    else {
+                        four = combinedapps[8];
+                        five = combinedapps[4];
+                    }
+                } else if (combinedapps[5] > combinedapps[3] || combinedapps[5] > combinedapps[9]) {
+                    three = combinedapps[4];
+                    if (combinedapps[3] > combinedapps[9]) {
+                        four = combinedapps[2];
+                        five = combinedapps[8];
+                    }
+                    else {
+                        four = combinedapps[8];
+                        five = combinedapps[2];
+                    }
+                } else if (combinedapps[9] > combinedapps[3] || combinedapps[9] > combinedapps[5]) {
+                    three = combinedapps[8];
+                    if (combinedapps[3] > combinedapps[5]) {
+                        four = combinedapps[2];
+                        five = combinedapps[4];
+                    }
+                    else {
+                        four = combinedapps[4];
+                        five = combinedapps[2];
+                    }
+                }
 
+            } else if (combinedapps[9] > combinedapps[3] || combinedapps[9] > combinedapps[5] || combinedapps[9] > combinedapps[7]) {
+                two = combinedapps[8];
+                if (combinedapps[3] > combinedapps[5] || combinedapps[3] > combinedapps[7]) {
+                    three = combinedapps[2];
+                    if (combinedapps[5] > combinedapps[7]) {
+                        four = combinedapps[4];
+                        five = combinedapps[6];
+                    }
+                    else {
+                        four = combinedapps[6];
+                        five = combinedapps[4];
+                    }
+                } else if (combinedapps[5] > combinedapps[3] || combinedapps[5] > combinedapps[7]) {
+                    three = combinedapps[4];
+                    if (combinedapps[5] > combinedapps[3]) {
+                        four = combinedapps[4];
+                        five = combinedapps[2];
+                    }
+                    else {
+                        four = combinedapps[2];
+                        five = combinedapps[4];
+                    }
+                } else if (combinedapps[7] > combinedapps[5] || combinedapps[7] > combinedapps[3]) {
+                    three = combinedapps[6];
+                    if (combinedapps[5] > combinedapps[3]) {
+                        four = combinedapps[4];
+                        five = combinedapps[2];
+                    }
+                    else {
+                        four = combinedapps[8];
+                        five = combinedapps[2];
+                    }
+                } 
+            }
+        }
+
+
+
+
+
+
+
+
+        } else if (combinedapps[3] > combinedapps[1] || combinedapps[3] > combinedapps[5] || combinedapps[3] > combinedapps[7] || combinedapps[3] > combinedapps[9]) {
+            one = combinedapps[2];
+        } else if (combinedapps[5] > combinedapps[1] || combinedapps[5] > combinedapps[3] || combinedapps[5] > combinedapps[7] || combinedapps[5] > combinedapps[9]) {
+            one = combinedapps[4];
+        } else if (combinedapps[7] > combinedapps[1] || combinedapps[7] > combinedapps[3] || combinedapps[7] > combinedapps[5] || combinedapps[7] > combinedapps[9]) {
+            one = combinedapps[6];
+        } else if (combinedapps[9] > combinedapps[1] || combinedapps[9] > combinedapps[3] || combinedapps[9] > combinedapps[5] || combinedapps[9] > combinedapps[7]) {
+            one = combinedapps[8];
 
         one = combinedapps[0];
         two = combinedapps[2];
