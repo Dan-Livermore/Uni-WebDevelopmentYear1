@@ -213,11 +213,9 @@ function breakdownTop5(combinedapps) {
     var five = "";
 
     var elements = combinedapps.length / 2;
-   
+    console.log(elements);
     if (elements === 1) {
         document.getElementById("Top5").innerHTML = "Your Most used app is: " + combinedapps[0] + ".";
-
-
     } else if (elements === 2) {
         let output = Top5TwoElements(combinedapps, 1, 3);
         document.getElementById("Top5").innerHTML = "Your 2 Most used apps are " + output[0] + " and " + output[1] + ".";
@@ -225,15 +223,16 @@ function breakdownTop5(combinedapps) {
         let output = Top5ThreeElements(combinedapps,1,3,5);
         document.getElementById("Top5").innerHTML = "Your 3 Most used apps are: " + output[0] + ", " + output[1] + " and " + output[2] + ".";
     } else if (elements === 4) {
-        Top5FourElements(combinedapps,1,3,5,7);
-        document.getElementById("Top5").innerHTML = "Your 4 Most used apps are: " + one + ", " + two + ", " + three + " and " + four + ".";
+        let output = Top5FourElements(combinedapps, 1, 3, 5, 7);
+        document.getElementById("Top5").innerHTML = "Your 4 Most used apps are: " + output[0] + ", " + output[1] + ", " + output[2] + " and " + output[3] + ".";
     } else if (elements > 4) {
-        document.getElementById("Top5").innerHTML = "Your 5 Most used apps are: " + one + ", " + two + ", " + three + ", " + four + " and " + five + ".";
+        let output = Top5FiveElements(combinedapps, 1, 3, 5, 7, 9);
+        document.getElementById("Top5").innerHTML = "Your 5 Most used apps are: " + output[0] + ", " + output[1] + ", " + output[2] + ", " + output[3] + " and " + output[4] + ".";
     }
 }
 
 function Top5TwoElements(combinedapps, a, b) {
-    if (combinedapps[a] > combinedapps[b]) {
+    if (combinedapps[a] >= combinedapps[b]) {
         one = combinedapps[a - 1];
         two = combinedapps[b - 1];
     } else {
@@ -244,30 +243,79 @@ function Top5TwoElements(combinedapps, a, b) {
 }
 
 function Top5ThreeElements(combinedapps, a, b, c) {
-    if (combinedapps[a] > combinedapps[b]) {
-        if (combinedapps[a] > combinedapps[c]) {
-            //a
-            var one = combinedapps[a - 1];
-            var output = Top5TwoElements(combinedapps, b, c);
-        }
-        else {
-            //c
-            var one = combinedapps[c - 1];
-            var output = Top5TwoElements(combinedapps, a, b);
-        }
-    }
-    else {
+    if (combinedapps[a] >= combinedapps[b] && combinedapps[a] >= combinedapps[c]) {
+        //a
+        one = combinedapps[a - 1];
+        var output = Top5TwoElements(combinedapps, b, c);
+    } else if (combinedapps[b] >= combinedapps[a] && combinedapps[b] >= combinedapps[c]) {
         //b
-        var one = combinedapps[b - 1];
+        one = combinedapps[b - 1];
         var output = Top5TwoElements(combinedapps, a, c);
+    } else {
+        //c
+        one = combinedapps[c - 1];
+        var output = Top5TwoElements(combinedapps, a, b);
     }
     two = output[0];
     three = output[1];
     return [ one, two, three ];
 }
 
-function Top5FourElements(combinedapps) {
-    //poggies
+function Top5FourElements(combinedapps, a, b, c, d) {
+    var one = "";
+    var two = "";
+    var three = "";
+    var four = "";
+    if (combinedapps[a] >= combinedapps[b] && combinedapps[a] >= combinedapps[c] && combinedapps[a] >= combinedapps[d]) {
+        //a
+        one = combinedapps[a - 1];
+        var output = Top5ThreeElements(combinedapps, b, c, d);
+    } else if (combinedapps[b] >= combinedapps[a] && combinedapps[b] >= combinedapps[c] && combinedapps[b] >= combinedapps[d]) {
+        //b
+        one = combinedapps[b - 1];
+        var output = Top5ThreeElements(combinedapps, a, c, d);
+    } else if (combinedapps[c] >= combinedapps[a] && combinedapps[c] >= combinedapps[b] && combinedapps[c] >= combinedapps[d]) {
+        //c
+        one = combinedapps[c - 1];
+        var output = Top5ThreeElements(combinedapps, a, b, d);
+    } else {
+        //d
+        one = combinedapps[d - 1];
+        var output = Top5ThreeElements(combinedapps, a, b, c);
+    }
+    two = output[0];
+    three = output[1];
+    four = output[2];
+    return [ one, two, three, four ];
+}
+
+function Top5FiveElements(combinedapps, a, b, c, d, e) {
+    if (combinedapps[a] >= combinedapps[b] && combinedapps[a] >= combinedapps[c] && combinedapps[a] >= combinedapps[d] && combinedapps[a] >= combinedapps[e]) {
+        //a
+        one = combinedapps[a - 1];
+        var output = Top5FourElements(combinedapps, b, c, d, e);
+    } else if (combinedapps[b] >= combinedapps[a] && combinedapps[b] >= combinedapps[c] && combinedapps[b] >= combinedapps[d] && combinedapps[b] >= combinedapps[e]) {
+        //b
+        one = combinedapps[b - 1];
+        var output = Top5FourElements(combinedapps, a, c, d, e);
+    } else if (combinedapps[c] >= combinedapps[a] && combinedapps[c] >= combinedapps[b] && combinedapps[c] >= combinedapps[d] && combinedapps[c] >= combinedapps[e]) {
+        //c
+        one = combinedapps[c - 1];
+        var output = Top5FourElements(combinedapps, a, b, d, e);
+    } else if (combinedapps[d] >= combinedapps[a] && combinedapps[d] >= combinedapps[b] && combinedapps[d] >= combinedapps[c] && combinedapps[d] >= combinedapps[e]) {
+        //d
+        one = combinedapps[d - 1];
+        var output = Top5FourElements(combinedapps, a, b, c, e);
+    } else {
+        //e
+        one = combinedapps[e - 1];
+        var output = Top5FourElements(combinedapps, a, b, c, d);
+    }
+    two = output[0];
+    three = output[1];
+    four = output[2];
+    five = output[3];
+    return [one, two, three, four, five];
 }
 
 function changeState(currentID) {
