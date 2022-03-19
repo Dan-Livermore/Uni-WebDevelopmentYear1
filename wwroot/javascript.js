@@ -1,5 +1,14 @@
-let saveddata = [];
-let itemsstored = 0;
+
+let saveddata = [{
+    "Username": "Shirley",
+    "Application": "Snap!",
+    "PlayMins": "23",
+    "Score": "3",
+    "Level": "1",
+    "Day": "2022/03/01",
+}];
+var combinedapps = [];
+let itemsstored = 1;
 
 function hideStates() {
     // This function hides the other states so when the application is first loaded, only the account state is shown.
@@ -21,11 +30,12 @@ function loadDay(ID){
 function storeData(title, aname, tspent, tused) {
     // Formats the data into JSON
     let entry = {
-        User: "DepressedWayfarer",
+        Username: "DepressedWayfarer",
+        Application: aname,
+        PlayMins: tspent,
+        Score: tused,
+        Level: "1",
         Day: formatMonth(title),
-        AppName: aname,
-        TimeSpent: tspent,
-        TimesUsed: tused,
     }
     // Adds the new array to the other stored data
     saveddata.push(entry);
@@ -80,60 +90,49 @@ function formatMonth(title) {
 
 function fillData() {
     // Takes the first json array from local storage and splits the data up into each item.
-    var data = [];
-    var combinedapps = [];
-    data, combinedapps = prepareData(data, combinedapps);
+    prepareData();
 
-    breakdownMostApps(data);
-    breakdownMostHours(data);
-    breakdownLongestApp(data);
-    breakdownMostUses(data);
-    breakdownTotalHours(data);
-    breakdownPercentage(data);
-    breakdownTop5(combinedapps);
+    breakdownMostApps();
+    breakdownMostHours();
+    breakdownLongestApp();
+    breakdownMostUses();
+    breakdownTotalHours();
+    breakdownPercentage();
+    breakdownTop5();
 }
 
-function prepareData(data, combinedapps) {
+function prepareData() {
+    saveddata.length = 0;
     var text = localStorage.getItem("DepressedWayfarers data");
     text = text.split(",");
-
-    for (var i = 1; i < text.length; i = i + 5) {
+    for (var i = 0; i < text.length; i++) {
         text[i] = text[i].split('":\"');
-        text[i] = text[i][1].toString().slice(0, -1);
-        data.push(text[i]);
-        text[i + 1] = text[i + 1].split('":\"');
-        text[i + 1] = text[i + 1][1].toString().slice(0, -1);
-        data.push(text[i + 1]);
-        text[i + 2] = text[i + 2].split('":\"');
-        text[i + 2] = text[i + 2][1].toString().slice(0, -1);
-        data.push(text[i + 2]);
-        text[i + 3] = text[i + 3].split('":\"');
-        if ((text.length - 1) === i + 3) {
-            text[i + 3] = text[i + 3][1].toString().slice(0, -3);
-        } else {
-            text[i + 3] = text[i + 3][1].toString().slice(0, -2);
-        }
-        data.push(text[i + 3]);
+        text[i] = text[i][1].replace('\"', "").replace('}', "").replace(']', "");
+        saveddata.push(text[i]);
     }
 
-    for (var i = 0; i < data.length; i = i + 4) {
+    for (var i = 0; i < saveddata.length; i = i + 6) {
         var found = false;
-        for (var j = 0; j < combinedapps.length; j = j + 2) {
+        
+        for (var j = 0; combinedapps.length-1; j = j + 4) {
             //if name already there, add to it. else add name and hours
-            if (data[i + 1] === combinedapps[j]) {
-                combinedapps[j + 1] = parseInt(combinedapps[j + 1]) + parseInt(data[i + 2]);
-                found = true;
-            }
+            console.log(saveddata[i+1], combinedapps[j]);
+            //if (saveddata[i + 1] === combinedapps[j]) {
+            //    combinedapps[j + 1] = parseInt(combinedapps[j + 1]) + parseInt(saveddata[i + 2]);
+            //    combinedapps[j + 2] = parseInt(combinedapps[j + 2]) + parseInt(saveddata[i + 3]);
+            //    combinedapps[j + 3] = parseInt(combinedapps[j + 3]) + parseInt(saveddata[i + 4]);
+            //    found = true;
+            //}
         }
         if (found === false) {
-            combinedapps.push(data[i + 1]);
-            combinedapps.push(parseInt(data[i + 2]));
+            combinedapps.push(saveddata[i + 1]);
+            combinedapps.push(saveddata[i + 2]);
+            combinedapps.push(saveddata[i + 3]);
+            combinedapps.push(saveddata[i + 4]);
         }
-
     }
-    console.log(data);
+    console.log(saveddata);
     console.log(combinedapps);
-    return data, combinedapps;
 }
 
 function breakdownMostApps(data) {
@@ -151,25 +150,26 @@ function breakdownLongestApp(data) {
 function breakdownMostUses(data) {
 }
 
-function breakdownTotalHours(data) {
+function breakdownTotalHours() {
     var total = 0;
-    for (var i = 0; i < data.length; i = i + 4) {
-        total += parseInt(data[i + 2]);
+    for (var i = 0; i < saveddata.length; i = i + 6) {
+        total += parseInt(saveddata[i + 2]);
     }
     document.getElementById("TotalHours").innerHTML = total + " Minutes of total screen time!";
 }
 
-function breakdownPercentage(data) {
-    var earliest = data[0];
-    var latest = data[0];
+function breakdownPercentage() {
+    var earliest = saveddata[5];
+    var latest = saveddata[5];
     var total = 0;
-    for (var i = 0; i < data.length; i = i + 4) {
-        if (data[i] < earliest) {
-            earliest = data[i];
-        } else if (data[i] > latest) {
-            latest = data[i];
+    for (var i = 5; i < saveddata.length; i = i + 6) {
+        if (saveddata[i] < earliest) {
+            earliest = saveddata[i];
+        } else if (saveddata[i] > latest) {
+            latest = saveddata[i];
         }
-        total += parseInt(data[i + 2]);
+        total += parseInt(saveddata[i - 3]);
+        
     }
     var daysrecorded = 0;
     earliest = earliest.split("/");
@@ -205,7 +205,7 @@ function breakdownPercentage(data) {
     document.getElementById("PercentOfLife").innerHTML = "You have spent " + percentage + "% of your life using apps!";
 }
 
-function breakdownTop5(combinedapps) {
+function breakdownTop5() {
     var one = "";
     var two = "";
     var three = "";
@@ -213,26 +213,28 @@ function breakdownTop5(combinedapps) {
     var five = "";
 
     var elements = combinedapps.length / 2;
-    console.log(elements);
+    //console.log(elements);
+
+    //console.log(combinedapps);
     if (elements === 1) {
         document.getElementById("Top5").innerHTML = "Your Most used app is: " + combinedapps[0] + ".";
     } else if (elements === 2) {
-        let output = Top5TwoElements(combinedapps, 1, 3);
+        let output = Top5TwoElements(1, 3);
         document.getElementById("Top5").innerHTML = "Your 2 Most used apps are " + output[0] + " and " + output[1] + ".";
     } else if (elements === 3) {
-        let output = Top5ThreeElements(combinedapps,1,3,5);
+        let output = Top5ThreeElements(1,3,5);
         document.getElementById("Top5").innerHTML = "Your 3 Most used apps are: " + output[0] + ", " + output[1] + " and " + output[2] + ".";
     } else if (elements === 4) {
-        let output = Top5FourElements(combinedapps, 1, 3, 5, 7);
+        let output = Top5FourElements(1, 3, 5, 7);
         document.getElementById("Top5").innerHTML = "Your 4 Most used apps are: " + output[0] + ", " + output[1] + ", " + output[2] + " and " + output[3] + ".";
     } else if (elements > 4) {
-        let output = Top5FiveElements(combinedapps, 1, 3, 5, 7, 9);
+        let output = Top5FiveElements(1, 3, 5, 7, 9);
         console.log(output);
         document.getElementById("Top5").innerHTML = "Your 5 Most used apps are: " + output[0] + ", " + output[1] + ", " + output[2] + ", " + output[3] + " and " + output[4] + ".";
     }
 }
 
-function Top5TwoElements(combinedapps, a, b) {
+function Top5TwoElements(a, b) {
     if (combinedapps[a] >= combinedapps[b]) {
         one = combinedapps[a - 1];
         two = combinedapps[b - 1];
