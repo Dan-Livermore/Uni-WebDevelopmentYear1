@@ -113,22 +113,19 @@ function prepareData() {
 
     for (var i = 0; i < saveddata.length; i = i + 6) {
         var found = false;
-        
-        for (var j = 0; combinedapps.length-1; j = j + 4) {
-            //if name already there, add to it. else add name and hours
+
+        for (var j = 0; j < combinedapps.length; j = j + 3) {
             console.log(saveddata[i+1], combinedapps[j]);
-            //if (saveddata[i + 1] === combinedapps[j]) {
-            //    combinedapps[j + 1] = parseInt(combinedapps[j + 1]) + parseInt(saveddata[i + 2]);
-            //    combinedapps[j + 2] = parseInt(combinedapps[j + 2]) + parseInt(saveddata[i + 3]);
-            //    combinedapps[j + 3] = parseInt(combinedapps[j + 3]) + parseInt(saveddata[i + 4]);
-            //    found = true;
-            //}
+            if (saveddata[i + 1] === combinedapps[j]) {
+                combinedapps[j + 1] = parseInt(combinedapps[j + 1]) + parseInt(saveddata[i + 2]);
+                combinedapps[j + 2] = parseInt(combinedapps[j + 2]) + parseInt(saveddata[i + 3]);
+                found = true;
+            }
         }
         if (found === false) {
             combinedapps.push(saveddata[i + 1]);
-            combinedapps.push(saveddata[i + 2]);
-            combinedapps.push(saveddata[i + 3]);
-            combinedapps.push(saveddata[i + 4]);
+            combinedapps.push(parseInt(saveddata[i + 2]));
+            combinedapps.push(parseInt(saveddata[i + 3]));
         }
     }
     console.log(saveddata);
