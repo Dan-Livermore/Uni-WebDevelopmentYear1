@@ -136,7 +136,35 @@ function prepareData() {
     console.log(combinedapps);
 }
 
-function breakdownMostApps(data) {
+function breakdownMostApps() {
+    var days = [];
+    for (var i = 5; i < saveddata.length; i = i + 6) {
+        days.push(saveddata[i]);
+    }
+    days = days.sort();
+
+    var day = "";
+    var items = 0;
+    for (var j = 0; j < days.length; j++) {
+        if (days[j] == day) {
+            items += 1;
+            if (items >= (days.length / 2)) {
+                console.log("most apps day is", day);
+                var apps = [];
+                for (var k = 5; k < saveddata.length; k = k + 6) {
+                    if (saveddata[k] === day) {
+                        apps.push(saveddata[k - 4]);
+                    }
+                }
+                document.getElementById("MostApps").innerHTML = "The day with the most recorded apps is " + day + " where you used these apps: " + apps + " !";
+
+            }
+        } else {
+            day = days[j];
+            items = 1;
+        }
+    }
+
 
 }
 
@@ -144,7 +172,7 @@ function breakdownMostHours(data) {
 
 }
 
-function breakdownLongestApp(data) {
+function breakdownLongestApp() {
     var name = "";
     var hours = 0;
     for (var i = 0; i < combinedapps.length; i = i + 3) {
@@ -156,7 +184,7 @@ function breakdownLongestApp(data) {
     document.getElementById("LongestApp").innerHTML = "The app you have used the most is " + name + ", with " + hours + " hours!";
 }
 
-function breakdownMostUses(data) {
+function breakdownMostUses() {
     var name = "";
     var uses = 0;
     for (var i = 0; i < combinedapps.length; i = i + 3) {
