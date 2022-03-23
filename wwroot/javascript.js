@@ -107,15 +107,19 @@ function prepareData() {
     text = text.split(",");
     for (var i = 0; i < text.length; i++) {
         text[i] = text[i].split('":\"');
-        text[i] = text[i][1].replace('\"', "").replace('}', "").replace(']', "");
-        saveddata.push(text[i]);
+        text[i] = text[i][1].replace('\"', "");
+        text[i] = text[i].replace('}', "");
+        text[i] = text[i].replace(']', "");
+        if (text[i] === "Shirley") {
+            i = i + 5;
+        } else {
+            saveddata.push(text[i]);
+        }
     }
-
     for (var i = 0; i < saveddata.length; i = i + 6) {
         var found = false;
 
         for (var j = 0; j < combinedapps.length; j = j + 3) {
-            console.log(saveddata[i+1], combinedapps[j]);
             if (saveddata[i + 1] === combinedapps[j]) {
                 combinedapps[j + 1] = parseInt(combinedapps[j + 1]) + parseInt(saveddata[i + 2]);
                 combinedapps[j + 2] = parseInt(combinedapps[j + 2]) + parseInt(saveddata[i + 3]);
@@ -227,7 +231,6 @@ function breakdownTop5() {
 }
 
 function Top5TwoElements(a, b) {
-    console.log(a, b);
     if (combinedapps[a] >= combinedapps[b]) {
         one = combinedapps[a - 1];
         two = combinedapps[b - 1];
@@ -235,7 +238,6 @@ function Top5TwoElements(a, b) {
         one = combinedapps[b - 1];
         two = combinedapps[a - 1];
     }
-    console.log(one, two);
     return [ one , two ];
 }
 
@@ -255,7 +257,6 @@ function Top5ThreeElements(a, b, c) {
     }
     two = output[0];
     three = output[1];
-    console.log(one, two, three);
     return [ one, two, three ];
 }
 
@@ -280,12 +281,10 @@ function Top5FourElements(a, b, c, d) {
     two = output[0];
     three = output[1];
     four = output[2];
-    console.log(one, two, three, four);
     return [ one, two, three, four ];
 }
 
 function Top5FiveElements(a, b, c, d, e) {
-    console.log(combinedapps[a], combinedapps[b], combinedapps[c], combinedapps[d], combinedapps[e]);
     if (combinedapps[a] >= combinedapps[b] && combinedapps[a] >= combinedapps[c] && combinedapps[a] >= combinedapps[d] && combinedapps[a] >= combinedapps[e]) {
         //a
         var one = combinedapps[a - 1];
@@ -315,7 +314,6 @@ function Top5FiveElements(a, b, c, d, e) {
     three = output[1];
     four = output[2];
     five = output[3];
-    console.log(one, two, three, four, five);
     return [one, two, three, four, five];
 }
 
