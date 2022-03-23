@@ -145,7 +145,15 @@ function breakdownMostHours(data) {
 }
 
 function breakdownLongestApp(data) {
-   
+    var name = "";
+    var hours = 0;
+    for (var i = 0; i < combinedapps.length; i = i + 3) {
+        if (combinedapps[i + 1] > hours) {
+            name = combinedapps[i];
+            hours = combinedapps[i + 1];
+        }
+    }
+    document.getElementById("LongestApp").innerHTML = "The app you have used the most is " + name;
 }
 
 function breakdownMostUses(data) {
