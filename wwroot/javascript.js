@@ -153,10 +153,19 @@ function breakdownLongestApp(data) {
             hours = combinedapps[i + 1];
         }
     }
-    document.getElementById("LongestApp").innerHTML = "The app you have used the most is " + name;
+    document.getElementById("LongestApp").innerHTML = "The app you have used the most is " + name + ", with " + hours + " hours!";
 }
 
 function breakdownMostUses(data) {
+    var name = "";
+    var uses = 0;
+    for (var i = 0; i < combinedapps.length; i = i + 3) {
+        if (combinedapps[i + 2] > uses) {
+            name = combinedapps[i];
+            uses = combinedapps[i + 2];
+        }
+    }
+    document.getElementById("MostUses").innerHTML = "The app you have loaded the most times is " + name + ", which you have used " + uses + " times!";
 }
 
 function breakdownTotalHours() {
