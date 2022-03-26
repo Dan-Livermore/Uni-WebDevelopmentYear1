@@ -102,7 +102,7 @@ function fillData() {
 }
 
 function prepareData() {
-    saveddata.length = 0;
+    saveddata = [];
     var text = localStorage.getItem("DepressedWayfarers data");
     text = text.split(",");
     for (var i = 0; i < text.length; i++) {
@@ -142,14 +142,13 @@ function breakdownMostApps() {
         days.push(saveddata[i]);
     }
     days = days.sort();
-
     var day = "";
     var items = 0;
+    var previtems = 0;
     for (var j = 0; j < days.length; j++) {
         if (days[j] == day) {
             items += 1;
-            if (items >= (days.length / 2)) {
-                console.log("most apps day is", day);
+            if (items >= ((days.length / 2)-previtems)) {
                 var apps = [];
                 for (var k = 5; k < saveddata.length; k = k + 6) {
                     if (saveddata[k] === day) {
@@ -157,18 +156,19 @@ function breakdownMostApps() {
                     }
                 }
                 document.getElementById("MostApps").innerHTML = "The day with the most recorded apps is " + day + " where you used these apps: " + apps + " !";
-
+                j = days.length;
             }
         } else {
             day = days[j];
+            if (previtems < items) {
+                previtems = items;
+            }
             items = 1;
         }
     }
-
-
 }
 
-function breakdownMostHours(data) {
+function breakdownMostHours() {
 
 }
 
