@@ -8,6 +8,7 @@ let saveddata = [{
     "Day": "2022/03/01",
 }];
 var combinedapps = [];
+var days = [];
 let itemsstored = 1;
 
 function hideStates() {
@@ -137,7 +138,6 @@ function prepareData() {
 }
 
 function breakdownMostApps() {
-    var days = [];
     for (var i = 5; i < saveddata.length; i = i + 6) {
         days.push(saveddata[i]);
     }
@@ -169,7 +169,33 @@ function breakdownMostApps() {
 }
 
 function breakdownMostHours() {
-
+    daytotal = [];
+    var pointer = 0;
+    for (var i = 0; i < saveddata.length; i = i + 6) {
+        var found = false;
+        for (var j = 0; j < days.length; j = j + 1) {
+            console.log(saveddata[i + 5], days[j]);
+            if (saveddata[i + 5] === daytotal[j]) {
+                found = true;
+                pointer = j;
+            }
+        }
+        if (found == true) {
+            daytotal[pointer + 1] = parseInt(daytotal[pointer + 1]) + parseInt(saveddata[i + 2]);
+        }
+        else {
+            daytotal.push(saveddata[i + 5]);
+            daytotal.push(parseInt(saveddata[i + 2]));
+        }
+    }
+    var greatesthours = ["",0];
+    for (var k = 0; k < daytotal.length; k = k + 2) {
+        if (daytotal[k + 1] > greatesthours[1]) {
+            greatesthours[0] = daytotal[k];
+            greatesthours[1] = daytotal[k + 1];
+        }
+    }
+    document.getElementById("MostHours").innerHTML = "The day with the most recorded screentime is " + greatesthours[0] + " where you spent: " + greatesthours[1] + " minutes using apps!";
 }
 
 function breakdownLongestApp() {
