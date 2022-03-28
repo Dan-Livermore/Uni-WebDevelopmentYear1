@@ -27,7 +27,29 @@ function loadDay(ID){
     currentid = ID;
 }
 
-    
+function validateData(title, aname, tspent, tused) {
+    var a = true;
+    var b = true;
+    console.log(tspent);
+    if (Number.isInteger(tspent) === false) {
+        alert("Time spent must be an integer.");
+    }
+    else {
+        if (tspent > 1440 && tspent > 0) {
+            alert("Time spent exceeds minutes in a day.");
+            a = false;
+        }
+    }
+    if (Number.isInteger(tused) === false) {
+        alert("Times used must be an integer.")
+        b = false;
+    }
+    if (a === true && b === true) {
+        storeData(title, aname, tspent, tused)
+    }
+}
+
+
 function storeData(title, aname, tspent, tused) {
     // Formats the data into JSON
     let entry = {
@@ -174,7 +196,6 @@ function breakdownMostHours() {
     for (var i = 0; i < saveddata.length; i = i + 6) {
         var found = false;
         for (var j = 0; j < days.length; j = j + 1) {
-            console.log(saveddata[i + 5], days[j]);
             if (saveddata[i + 5] === daytotal[j]) {
                 found = true;
                 pointer = j;
