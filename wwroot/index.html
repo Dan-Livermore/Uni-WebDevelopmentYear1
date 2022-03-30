@@ -25,13 +25,13 @@
         <h1>Time Management Program</h1>
 
         <!-- This form will collect the username and password in later versions so no-one else can use another person's account-->
-        <form >
+        <form>
             <label for="uname">Username: </label>
             <input type="text" id="uname" name="uname"><br><br>
             <label for="pword">Password: </label>
-            <input type="text" id="pword" name="pword"><br><br>
-            <input type="submit" value="OK" onclick="event.preventDefault()">
-          </form>
+            <input type="password" id="pword" name="pword"><br><br>
+            <input type="submit" value="OK" onclick="event.preventDefault();setUser(document.getElementById('uname').value)">
+        </form>
     </div>
 
     <!-- Calendar Section -->
@@ -112,11 +112,11 @@
             <label for="aname"> App Name:  </label>
             <input type="text" id="aname" name="aname"><br><br>
             <label for="tspent"> Time Spent: </label>
-            <input type="text" id="tspent" name="tspent"><br><br>
+            <input type="number" id="tspent" name="tspent" max="1440"><br><br>
             <label for="tused"> Times Used: </label>
-            <input type="text" id="tused" name="tused"><br><br>
+            <input type="number" id="tused" name="tused"><br><br>
              </form>
-        <input type="submit" value="Save" onclick="event.preventDefault();validateData(document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value)">
+        <input type="submit" value="Save" onclick="event.preventDefault();storeData(document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value)">
        
     </div>
 

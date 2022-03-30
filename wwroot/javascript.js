@@ -1,4 +1,4 @@
-
+var user = "User";
 let saveddata = [{
     "Username": "Shirley",
     "Application": "Snap!",
@@ -9,7 +9,12 @@ let saveddata = [{
 }];
 var combinedapps = [];
 var days = [];
-let itemsstored = 1;
+var user = "User";
+
+function setUser(username) {
+    user = username;
+    document.forms[0].reset();
+}
 
 function hideStates() {
     // This function hides the other states so when the application is first loaded, only the account state is shown.
@@ -27,33 +32,11 @@ function loadDay(ID){
     currentid = ID;
 }
 
-function validateData(title, aname, tspent, tused) {
-    var a = true;
-    var b = true;
-    console.log(tspent);
-    if (Number.isInteger(tspent) === false) {
-        alert("Time spent must be an integer.");
-    }
-    else {
-        if (tspent > 1440 && tspent > 0) {
-            alert("Time spent exceeds minutes in a day.");
-            a = false;
-        }
-    }
-    if (Number.isInteger(tused) === false) {
-        alert("Times used must be an integer.")
-        b = false;
-    }
-    if (a === true && b === true) {
-        storeData(title, aname, tspent, tused)
-    }
-}
-
 
 function storeData(title, aname, tspent, tused) {
     // Formats the data into JSON
     let entry = {
-        Username: "DepressedWayfarer",
+        Username: user,
         Application: aname,
         PlayMins: tspent,
         Score: tused,
@@ -62,14 +45,14 @@ function storeData(title, aname, tspent, tused) {
     }
     // Adds the new array to the other stored data
     saveddata.push(entry);
-    itemsstored += 1;
-
     // Clears form to show data is stored
     document.forms[1].reset();
     alert("Saved");
 
     // Commits the changes to storage.
     localStorage.setItem('DepressedWayfarers data', JSON.stringify(saveddata));
+
+
 
 }
 
@@ -128,15 +111,20 @@ function prepareData() {
     saveddata = [];
     var text = localStorage.getItem("DepressedWayfarers data");
     text = text.split(",");
-    for (var i = 0; i < text.length; i++) {
+    for (var i = 0; i < text.length; i = i + 6) {
         text[i] = text[i].split('":\"');
         text[i] = text[i][1].replace('\"', "");
-        text[i] = text[i].replace('}', "");
-        text[i] = text[i].replace(']', "");
-        if (text[i] === "Shirley") {
+        if (text[i] != user) {
             i = i + 5;
         } else {
             saveddata.push(text[i]);
+            for (var j = i+1; j < i+6; j++) {
+                text[j] = text[j].split('":\"');
+                text[j] = text[j][1].replace('\"', "");
+                text[j] = text[j].replace('}', "");
+                text[j] = text[j].replace(']', "");
+                saveddata.push(text[j]);
+            }
         }
     }
     for (var i = 0; i < saveddata.length; i = i + 6) {
