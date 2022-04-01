@@ -1,4 +1,3 @@
-var user = "User";
 let saveddata = [{
     "Username": "Shirley",
     "Application": "Snap!",
@@ -418,6 +417,6 @@ function changeState(currentID) {
     document.getElementById("DataState").style.display="none";
     // Enters the saved data onto the breakdown page. MUST CHANGE
     fillData();
-}
+    }
 }
 

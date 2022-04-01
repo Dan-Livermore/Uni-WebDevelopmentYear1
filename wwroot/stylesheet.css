@@ -1,9 +1,20 @@
-.TopMenu ul{
+.TopMenu {
+    display: inline-block;
+    padding: 20px;
+    padding-bottom: 30px;
+}
+
+.TopMenu ul {
+    display: inline-block;
     background-color: gray;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     font-size: 24px;
     font-family: 'Trebuchet MS';
 }
@@ -25,21 +36,51 @@
     color: black;
 }
 
+.Account {
+    display: block;
+    /*padding: 20px;*/
+}
+
+.Account h1{
+    margin: 0;
+    font-size: 80px;
+    font-family: 'Gloucester MT';
+    padding-top: 20px;
+    text-align: center;
+}
+
 .Account form{
     font-size: 20px;
-    font-family: monospace;
+    font-family: 'Lucida Console';
     padding: 25px 0 0 100px;
+}
+
+input[type=text], input[type=password], input[type=number] {
+    width: 45%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#submit {
+    background-color: gray;
+    font-size: 32px;
+    font-family: 'Trebuchet MS';
+    color: white;
 }
 
 .Calendar h1, button{
     display: inline-block;
 }
 
-.Calendar h1{
+.Calendar h1 {
+    font-family: Verdana;
     text-align: center;
     font-size: 32px;
     width: 42%;
-    
 }
 
 .Calendar button{
@@ -59,16 +100,20 @@
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto;
     grid-gap: 10px;
-    margin-left: 30%; 
+    margin-left: 30%;
     margin-right: 30%;
     background-color: white;
-    }
-
-.GridContainer .Day {
-    height: 30px;
-    background-color: white;
-    text-align: center;
+    font-family: Arial;
+    text-indent: 2%
 }
+
+    .GridContainer .Day {
+        height: 30px;
+        background-color: white;
+        text-align: center;
+        font-family: Verdana;
+        font-size: 14px;
+    }
 
 .GridContainer > .Active {
     height: 81px;

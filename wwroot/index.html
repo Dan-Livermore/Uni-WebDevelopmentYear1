@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="stylesheet.css">
     <script src="javascript.js"></script>
     <script src="calendarupdates.js"></script>
+
+    <style>        body {
+            background-color: ghostwhite;
+        }
+    </style>
 </head>
 
 <body onload="hideStates()">
@@ -30,7 +35,7 @@
             <input type="text" id="uname" name="uname"><br><br>
             <label for="pword">Password: </label>
             <input type="password" id="pword" name="pword"><br><br>
-            <input type="submit" value="OK" onclick="event.preventDefault();setUser(document.getElementById('uname').value)">
+            <input id="submit" type="submit" value="OK" onclick="event.preventDefault();setUser(document.getElementById('uname').value)">
         </form>
     </div>
 
