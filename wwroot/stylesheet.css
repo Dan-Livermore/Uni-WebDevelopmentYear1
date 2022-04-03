@@ -55,7 +55,7 @@
     padding: 25px 0 0 100px;
 }
 
-input[type=text], input[type=password], input[type=number] {
+.Account input[type=text], input[type=password] {
     width: 45%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -63,7 +63,6 @@ input[type=text], input[type=password], input[type=number] {
     border-radius: 4px;
     box-sizing: border-box;
 }
-
 
 #submit {
     background-color: gray;
@@ -107,13 +106,13 @@ input[type=text], input[type=password], input[type=number] {
     text-indent: 2%
 }
 
-    .GridContainer .Day {
-        height: 30px;
-        background-color: white;
-        text-align: center;
-        font-family: Verdana;
-        font-size: 14px;
-    }
+.GridContainer .Day {
+    height: 30px;
+    background-color: white;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 14px;
+}
 
 .GridContainer > .Active {
     height: 81px;
@@ -127,4 +126,44 @@ input[type=text], input[type=password], input[type=number] {
 
 .GridContainer > .Active:hover {
     background-color: lightskyblue;
+}
+
+.Data {
+    margin-left: 30%;
+    background-color: dodgerblue;
+    width: 40%;
+    color: white;
+    border-radius: 50px;
+    font-family: Arial;
+    padding-bottom: 15px;
+    /*display: block;
+    margin: 0 auto;*/
+}
+
+.Data h1 {
+    padding-top: 20px;
+    font-family: Verdana;
+    font-size: 40px;
+    text-align: center;
+}
+
+.Data label{
+    padding-left: 10px;
+}
+
+.Data input[type=text], input[type=number]{
+    width: 75%;
+    padding: 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.Data input[type=submit] {
+    background-color: gray;
+    font-size: 32px;
+    font-family: 'Trebuchet MS';
+    color: white;
+    margin-left: 40%;
 }
