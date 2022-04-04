@@ -7,7 +7,8 @@
     <script src="javascript.js"></script>
     <script src="calendarupdates.js"></script>
 
-    <style>        body {
+    <style>        
+        body {
             background-color: ghostwhite;
         }
     </style>
@@ -137,6 +138,34 @@
         <p id="TotalHours"> The combined total of all the hours goes here.</p>
         <p id="PercentOfLife"> The combined total as a % of life shall go here.</p>
         <p id="Top5"> The 5 apps with the most usage will go here.</p>
+
+        <table id="TotalTable" style="width:90%">
+            <tr>
+                <th>Username</th>
+                <th>Application</th>
+                <th>PlayMins</th>
+                <th>Score</th>
+                <th>Level</th>
+                <th>Date</th>
+            </tr>
+        </table>
+
+
+        <button type="button" id="StartButton" onclick="StartBreakdown()">Start Breakdown</button>
+        <button type="button" id="EndButton" onclick="EndBreakdown()">End Breakdown</button>
+
+        <p id="Usersname"> Add User's Name</p>
+
+        <table id="UserTable" style="width:80%">
+            <tr>
+                <th>Date</th>
+                <th>Application</th>
+                <th>Time Spent</th>
+                <th>Times Used</th>
+            </tr>
+        </table>
+
+
     </div>
 
     </body>

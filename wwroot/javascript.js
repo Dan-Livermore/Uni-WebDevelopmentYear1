@@ -9,6 +9,7 @@ let saveddata = [{
 var combinedapps = [];
 var days = [];
 var user = "User";
+var interval;
 
 function setUser(username) {
     user = username;
@@ -398,25 +399,96 @@ function Top5FiveElements(a, b, c, d, e) {
 
 function changeState(currentID) {
     // This hides all other states but the one that is currently loaded and if it is on the breakdown state
-    if (currentID === "Account"){
-    document.getElementById("BreakdownState").style.display="none";
-    document.getElementById("CalendarState").style.display="none";
-    document.getElementById("AccountState").style.display="block";
-    document.getElementById("DataState").style.display="none";
-    } else if (currentID === "Calendar"){
-    document.getElementById("BreakdownState").style.display="none";
-    document.getElementById("CalendarState").style.display="block";
-    document.getElementById("AccountState").style.display="none";
-    document.getElementById("DataState").style.display = "none";
-     // Loads the current month on the calendar
-    selectMonth();
-    } else{
-    document.getElementById("BreakdownState").style.display="block";
-    document.getElementById("CalendarState").style.display="none";
-    document.getElementById("AccountState").style.display="none";
-    document.getElementById("DataState").style.display="none";
-    // Enters the saved data onto the breakdown page. MUST CHANGE
-    fillData();
+    ReturnBackground();
+    if (currentID === "Account") {
+        document.getElementById("BreakdownState").style.display = "none";
+        document.getElementById("CalendarState").style.display = "none";
+        document.getElementById("AccountState").style.display = "block";
+        document.getElementById("DataState").style.display = "none";
+    } else if (currentID === "Calendar") {
+        document.getElementById("BreakdownState").style.display = "none";
+        document.getElementById("CalendarState").style.display = "block";
+        document.getElementById("AccountState").style.display = "none";
+        document.getElementById("DataState").style.display = "none";
+        // Loads the current month on the calendar
+        selectMonth();
+    } else {
+        document.getElementById("BreakdownState").style.display = "block";
+        document.getElementById("CalendarState").style.display = "none";
+        document.getElementById("AccountState").style.display = "none";
+        document.getElementById("DataState").style.display = "none";
+        EndBreakdown();
+        // Enters the saved data onto the breakdown page. MUST CHANGE
+        fillData();
     }
 }
 
+function ReturnBackground() {
+    window.clearTimeout(interval);
+    document.getElementsByTagName("body")[0].style.backgroundColor = "ghostwhite";
+}
+
+function SetBackground() {
+    interval = window.setTimeout("SetBackground()", 1000);
+    var index = Math.round(Math.random() * 7);
+    var ColorValue = "FFFFFF"; // default white
+    if (index == 1)
+        ColorValue = "00FF00"; //blue
+    if (index == 2)
+        ColorValue = "FF00FF"; //purple
+    if (index == 3)
+        ColorValue = "00FFFF"; //yellow
+    if (index == 4)
+        ColorValue = "0000FF"; //green
+    if (index == 5)
+        ColorValue = "FF0000"; // red
+    if (index == 6)
+        ColorValue = "FFFF00"; //yellow
+    if (index == 7)
+        ColorValue = "000000"; //black
+    document.getElementsByTagName("body")[0].style.backgroundColor = "#" + ColorValue;
+}
+
+function StartBreakdown() {
+    SetBackground();
+    document.getElementById("MostApps").style.display = "block";
+    document.getElementById("MostHours").style.display = "block";
+    document.getElementById("LongestApp").style.display = "block";
+    document.getElementById("MostUses").style.display = "block";
+    document.getElementById("TotalHours").style.display = "block";
+    document.getElementById("PercentOfLife").style.display = "block";
+    document.getElementById("Top5").style.display = "block";
+
+    document.getElementById("TotalTable").style.display = "none";
+    document.getElementById("StartButton").style.display = "none";
+    document.getElementById("EndButton").style.display = "block";
+    document.getElementById("UserTable").style.display = "block";
+    document.getElementById("Usersname").style.display = "block";
+    FillUserTable();
+}
+
+function EndBreakdown() {
+    ReturnBackground();
+    document.getElementById("MostApps").style.display = "none";
+    document.getElementById("MostHours").style.display = "none";
+    document.getElementById("LongestApp").style.display = "none";
+    document.getElementById("MostUses").style.display = "none";
+    document.getElementById("TotalHours").style.display = "none";
+    document.getElementById("PercentOfLife").style.display = "none";
+    document.getElementById("Top5").style.display = "none";
+
+    document.getElementById("TotalTable").style.display = "block";
+    document.getElementById("StartButton").style.display = "block";
+    document.getElementById("EndButton").style.display = "none";
+    document.getElementById("UserTable").style.display = "none";
+    document.getElementById("Usersname").style.display = "none";
+    FillTotalTable();
+}
+
+function FillTotalTable() {
+
+}
+
+function FillUserTable() {
+
+}

@@ -136,8 +136,6 @@
     border-radius: 50px;
     font-family: Arial;
     padding-bottom: 15px;
-    /*display: block;
-    margin: 0 auto;*/
 }
 
 .Data h1 {
@@ -161,9 +159,11 @@
 }
 
 .Data input[type=submit] {
-    background-color: gray;
+    background-color: lightskyblue;
     font-size: 32px;
     font-family: 'Trebuchet MS';
     color: white;
     margin-left: 40%;
+    border-radius: 10px;
+    padding: 5px 10px;
 }
