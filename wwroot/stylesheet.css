@@ -167,3 +167,62 @@
     border-radius: 10px;
     padding: 5px 10px;
 }
+
+.Breakdown h1 {
+    font-family: 'Gloucester MT';
+    text-align: center;
+    font-size: 108px;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    width: 48%;
+    text-decoration: underline;
+}
+
+.Breakdown p {
+    color: white;
+    font-family: Tahoma;
+    font-size: 24px;
+}
+
+
+#StartButton {
+    background-color: gray;
+    font-size: 24px;
+    font-family: 'Trebuchet MS';
+    color: white;
+}
+
+#EndButton {
+    background-color: gray;
+    font-size: 24px;
+    font-family: 'Trebuchet MS';
+    color: white;
+}
+
+#TotalTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#TotalTable td, #TotalTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+    #TotalTable tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #TotalTable tr:hover {
+        background-color: #ddd;
+    }
+
+    #TotalTable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }

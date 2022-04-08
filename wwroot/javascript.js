@@ -21,7 +21,6 @@ function hideStates() {
     document.getElementById("BreakdownState").style.display="none";
     document.getElementById("CalendarState").style.display="none";
     document.getElementById("DataState").style.display="none";
-    //selectMonth();
 }
 
 function loadDay(ID){
@@ -165,7 +164,7 @@ function breakdownMostApps() {
                         apps.push(saveddata[k - 4]);
                     }
                 }
-                document.getElementById("MostApps").innerHTML = "The day with the most recorded apps is " + day + " where you used these apps: " + apps + " !";
+                //document.getElementById("MostApps").innerHTML = "The day with the most recorded apps is " + day + " where you used these apps: " + apps + " !";
                 j = days.length;
             }
         } else {
@@ -420,6 +419,8 @@ function changeState(currentID) {
         EndBreakdown();
         // Enters the saved data onto the breakdown page. MUST CHANGE
         fillData();
+        FillTotalTable();
+        FillUserTable();
     }
 }
 
@@ -430,28 +431,24 @@ function ReturnBackground() {
 
 function SetBackground() {
     interval = window.setTimeout("SetBackground()", 1000);
-    var index = Math.round(Math.random() * 7);
-    var ColorValue = "FFFFFF"; // default white
+    var index = Math.round(Math.random() * 6);
     if (index == 1)
-        ColorValue = "00FF00"; //blue
+        ColorValue = "00FF00";
     if (index == 2)
-        ColorValue = "FF00FF"; //purple
+        ColorValue = "FF00FF";
     if (index == 3)
-        ColorValue = "00FFFF"; //yellow
+        ColorValue = "00FFFF";
     if (index == 4)
-        ColorValue = "0000FF"; //green
+        ColorValue = "0000FF";
     if (index == 5)
-        ColorValue = "FF0000"; // red
+        ColorValue = "FF0000";
     if (index == 6)
-        ColorValue = "FFFF00"; //yellow
-    if (index == 7)
-        ColorValue = "000000"; //black
+        ColorValue = "FFFF00";
     document.getElementsByTagName("body")[0].style.backgroundColor = "#" + ColorValue;
 }
 
 function StartBreakdown() {
     SetBackground();
-    document.getElementById("MostApps").style.display = "block";
     document.getElementById("MostHours").style.display = "block";
     document.getElementById("LongestApp").style.display = "block";
     document.getElementById("MostUses").style.display = "block";
@@ -464,12 +461,13 @@ function StartBreakdown() {
     document.getElementById("EndButton").style.display = "block";
     document.getElementById("UserTable").style.display = "block";
     document.getElementById("Usersname").style.display = "block";
+    document.getElementById("Usersname").innerHTML = user + "'s data:";
+    document.getElementById("BreakdownTitle").innerHTML = user + "'s data";
     FillUserTable();
 }
 
 function EndBreakdown() {
     ReturnBackground();
-    document.getElementById("MostApps").style.display = "none";
     document.getElementById("MostHours").style.display = "none";
     document.getElementById("LongestApp").style.display = "none";
     document.getElementById("MostUses").style.display = "none";
@@ -482,13 +480,71 @@ function EndBreakdown() {
     document.getElementById("EndButton").style.display = "none";
     document.getElementById("UserTable").style.display = "none";
     document.getElementById("Usersname").style.display = "none";
-    FillTotalTable();
+    document.getElementById("BreakdownTitle").innerHTML = "Breakdown";
+    //FillTotalTable();
 }
 
 function FillTotalTable() {
+    document.getElementById("TotalTable").remove();
+    var table = document.getElementById("TotalTable");
 
+    var text = localStorage.getItem("DepressedWayfarers data");
+    text = text.split(",");
+    for (var i = 0; i < text.length; i = i + 6) {
+        text[i] = text[i].split('":\"');
+        text[i] = text[i][1].replace('\"', "");
+        for (var j = i + 1; j < i + 6; j++) {
+            text[j] = text[j].split('":\"');
+            text[j] = text[j][1].replace('\"', "");
+            text[j] = text[j].replace('}', "");
+            text[j] = text[j].replace(']', "");
+        }
+    }
+
+    for (var i = 0; i <= text.length/6; i = i + 6) {
+        var row = table.insertRow();
+        var username = row.insertCell(0);
+        var application = row.insertCell(1);
+        var playmins = row.insertCell(2);
+        var scores = row.insertCell(3);
+        var level = row.insertCell(4);
+        var date = row.insertCell(5);
+        username.innerHTML = text[i];
+        application.innerHTML = text[i + 1];
+        playmins.innerHTML = text[i + 2];
+        scores.innerHTML = text[i + 3];
+        level.innerHTML = text[i + 4];
+        date.innerHTML = text[i + 5];
+    }
 }
 
 function FillUserTable() {
+    document.getElementById("UserTable").remove();
+    var table = document.getElementById("UserTable");
 
+    var text = localStorage.getItem("DepressedWayfarers data");
+    text = text.split(",");
+    for (var i = 0; i < text.length; i = i + 6) {
+        text[i] = text[i].split('":\"');
+        text[i] = text[i][1].replace('\"', "");
+        for (var j = i + 1; j < i + 6; j++) {
+            text[j] = text[j].split('":\"');
+            text[j] = text[j][1].replace('\"', "");
+            text[j] = text[j].replace('}', "");
+            text[j] = text[j].replace(']', "");
+        }
+    }
+    for (var i = 0; i <= text.length - 1 / 4; i = i + 4) {
+        if (text[i] === user) {
+            var row = table.insertRow();
+            var date = row.insertCell(0);
+            var application = row.insertCell(1);
+            var timespent = row.insertCell(2);
+            var timesused = row.insertCell(3);
+            date.innerHTML = text[i+6];
+            application.innerHTML = text[i + 1];
+            timespent.innerHTML = text[i + 2];
+            timesused.innerHTML = text[i + 3];
+        }
+    }
 }
