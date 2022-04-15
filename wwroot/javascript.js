@@ -419,8 +419,6 @@ function changeState(currentID) {
         EndBreakdown();
         // Enters the saved data onto the breakdown page. MUST CHANGE
         fillData();
-        FillTotalTable();
-        FillUserTable();
     }
 }
 
@@ -456,14 +454,12 @@ function StartBreakdown() {
     document.getElementById("PercentOfLife").style.display = "block";
     document.getElementById("Top5").style.display = "block";
 
-    document.getElementById("TotalTable").style.display = "none";
+    //document.getElementById("TotalTable").style.display = "none";
     document.getElementById("StartButton").style.display = "none";
     document.getElementById("EndButton").style.display = "block";
-    document.getElementById("UserTable").style.display = "block";
-    document.getElementById("Usersname").style.display = "block";
-    document.getElementById("Usersname").innerHTML = user + "'s data:";
+    //document.getElementById("UserTable").style.display = "block";
+    document.getElementById("Usersname").style.display = "none";
     document.getElementById("BreakdownTitle").innerHTML = user + "'s data";
-    FillUserTable();
 }
 
 function EndBreakdown() {
@@ -475,76 +471,11 @@ function EndBreakdown() {
     document.getElementById("PercentOfLife").style.display = "none";
     document.getElementById("Top5").style.display = "none";
 
-    document.getElementById("TotalTable").style.display = "block";
+    //document.getElementById("TotalTable").style.display = "block";
     document.getElementById("StartButton").style.display = "block";
     document.getElementById("EndButton").style.display = "none";
-    document.getElementById("UserTable").style.display = "none";
-    document.getElementById("Usersname").style.display = "none";
+    /*document.getElementById("UserTable").style.display = "none";*/
+    document.getElementById("Usersname").style.display = "block";
+    document.getElementById("Usersname").innerHTML = "User: " + user;
     document.getElementById("BreakdownTitle").innerHTML = "Breakdown";
-    //FillTotalTable();
-}
-
-function FillTotalTable() {
-    document.getElementById("TotalTable").remove();
-    var table = document.getElementById("TotalTable");
-
-    var text = localStorage.getItem("DepressedWayfarers data");
-    text = text.split(",");
-    for (var i = 0; i < text.length; i = i + 6) {
-        text[i] = text[i].split('":\"');
-        text[i] = text[i][1].replace('\"', "");
-        for (var j = i + 1; j < i + 6; j++) {
-            text[j] = text[j].split('":\"');
-            text[j] = text[j][1].replace('\"', "");
-            text[j] = text[j].replace('}', "");
-            text[j] = text[j].replace(']', "");
-        }
-    }
-
-    for (var i = 0; i <= text.length/6; i = i + 6) {
-        var row = table.insertRow();
-        var username = row.insertCell(0);
-        var application = row.insertCell(1);
-        var playmins = row.insertCell(2);
-        var scores = row.insertCell(3);
-        var level = row.insertCell(4);
-        var date = row.insertCell(5);
-        username.innerHTML = text[i];
-        application.innerHTML = text[i + 1];
-        playmins.innerHTML = text[i + 2];
-        scores.innerHTML = text[i + 3];
-        level.innerHTML = text[i + 4];
-        date.innerHTML = text[i + 5];
-    }
-}
-
-function FillUserTable() {
-    document.getElementById("UserTable").remove();
-    var table = document.getElementById("UserTable");
-
-    var text = localStorage.getItem("DepressedWayfarers data");
-    text = text.split(",");
-    for (var i = 0; i < text.length; i = i + 6) {
-        text[i] = text[i].split('":\"');
-        text[i] = text[i][1].replace('\"', "");
-        for (var j = i + 1; j < i + 6; j++) {
-            text[j] = text[j].split('":\"');
-            text[j] = text[j][1].replace('\"', "");
-            text[j] = text[j].replace('}', "");
-            text[j] = text[j].replace(']', "");
-        }
-    }
-    for (var i = 0; i <= text.length - 1 / 4; i = i + 4) {
-        if (text[i] === user) {
-            var row = table.insertRow();
-            var date = row.insertCell(0);
-            var application = row.insertCell(1);
-            var timespent = row.insertCell(2);
-            var timesused = row.insertCell(3);
-            date.innerHTML = text[i+6];
-            application.innerHTML = text[i + 1];
-            timespent.innerHTML = text[i + 2];
-            timesused.innerHTML = text[i + 3];
-        }
-    }
 }
