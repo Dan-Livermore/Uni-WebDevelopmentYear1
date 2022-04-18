@@ -184,6 +184,11 @@
     font-size: 24px;
 }
 
+.Breakdown marquee {
+    font-family: Tahoma;
+    font-size: 24px;
+}
+
 
 #StartButton {
     background-color: gray;

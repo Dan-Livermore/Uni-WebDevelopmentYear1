@@ -1,4 +1,4 @@
-let saveddata = [{
+var storeddata = [{
     "Username": "Shirley",
     "Application": "Snap!",
     "PlayMins": "23",
@@ -6,10 +6,13 @@ let saveddata = [{
     "Level": "1",
     "Day": "2022/03/01",
 }];
+var saveddata = [];
 var combinedapps = [];
 var days = [];
 var user = "User";
 var interval;
+var latest;
+var newdate;
 
 function setUser(username) {
     user = username;
@@ -43,13 +46,13 @@ function storeData(title, aname, tspent, tused) {
         Day: formatMonth(title),
     }
     // Adds the new array to the other stored data
-    saveddata.push(entry);
+    storeddata.push(entry);
     // Clears form to show data is stored
     document.forms[1].reset();
     alert("Saved");
 
     // Commits the changes to storage.
-    localStorage.setItem('DepressedWayfarers data', JSON.stringify(saveddata));
+    localStorage.setItem('DepressedWayfarers data', JSON.stringify(storeddata));
 
 
 
@@ -104,18 +107,19 @@ function fillData() {
     breakdownTotalHours();
     breakdownPercentage();
     breakdownTop5();
+
+    newAlert();
 }
 
 function prepareData() {
-    saveddata = [];
+    saveddata = []
     var text = localStorage.getItem("DepressedWayfarers data");
+    storeddata = text;
     text = text.split(",");
     for (var i = 0; i < text.length; i = i + 6) {
         text[i] = text[i].split('":\"');
         text[i] = text[i][1].replace('\"', "");
-        if (text[i] != user) {
-            i = i + 5;
-        } else {
+        if (text[i] === user){
             saveddata.push(text[i]);
             for (var j = i+1; j < i+6; j++) {
                 text[j] = text[j].split('":\"');
@@ -142,6 +146,7 @@ function prepareData() {
             combinedapps.push(parseInt(saveddata[i + 3]));
         }
     }
+    console.log(storeddata);
     console.log(saveddata);
     console.log(combinedapps);
 }
@@ -151,6 +156,7 @@ function breakdownMostApps() {
         days.push(saveddata[i]);
     }
     days = days.sort();
+    console.log(days);
     var day = "";
     var items = 0;
     var previtems = 0;
@@ -203,7 +209,10 @@ function breakdownMostHours() {
             greatesthours[1] = daytotal[k + 1];
         }
     }
-    document.getElementById("MostHours").innerHTML = "The day with the most recorded screentime is " + greatesthours[0] + " where you spent: " + greatesthours[1] + " minutes using apps!";
+    var day = greatesthours[0].split("/")
+    day[1] = parseInt(day[1]);
+    displayDate(day);
+    document.getElementById("MostHours").innerHTML = "The day with the most recorded screentime is " + newdate + " where you spent: " + greatesthours[1] + " minutes using apps!";
 }
 
 function breakdownLongestApp() {
@@ -240,7 +249,7 @@ function breakdownTotalHours() {
 
 function breakdownPercentage() {
     var earliest = saveddata[5];
-    var latest = saveddata[5];
+    latest = saveddata[5];
     var total = 0;
     for (var i = 5; i < saveddata.length; i = i + 6) {
         if (saveddata[i] < earliest) {
@@ -430,6 +439,7 @@ function ReturnBackground() {
 function SetBackground() {
     interval = window.setTimeout("SetBackground()", 1000);
     var index = Math.round(Math.random() * 6);
+    var ColorValue = "FFFFFF";
     if (index == 1)
         ColorValue = "00FF00";
     if (index == 2)
@@ -478,4 +488,51 @@ function EndBreakdown() {
     document.getElementById("Usersname").style.display = "block";
     document.getElementById("Usersname").innerHTML = "User: " + user;
     document.getElementById("BreakdownTitle").innerHTML = "Breakdown";
+}
+
+function newAlert() {
+    latest[2] = parseInt(latest[2]) + 1;
+    console.log(latest);
+    displayDate(latest);
+    document.getElementById("UpcomingEvent").innerHTML = "The next day without data is " + newdate + ".";
+}
+
+function displayDate(date) {
+    var day = parseInt(date[2]);
+    if (date[1] === 1) {
+        newdate = day + " January " + date[0];
+    }
+    else if (date[1] === 2) {
+        newdate = day + " February " + date[0];
+    }
+    else if (date[1] === 3) {
+        newdate = day + " March " + date[0];
+    }
+    else if (date[1] === 4) {
+        newdate = day + " April " + date[0];
+    }
+    else if (date[1] === 5) {
+        newdate = day + " May " + date[0];
+    }
+    else if (date[1] === 6) {
+        newdate = day + " June " + date[0];
+    }
+    else if (date[1] === 7) {
+        newdate = day + " July " + date[0];
+    }
+    else if (date[1] === 8) {
+        newdate = day + " August " + date[0];
+    }
+    else if (date[1] === 9) {
+        newdate = day + " September " + date[0];
+    }
+    else if (date[1] === 10) {
+        newdate = day + " October " + date[0];
+    }
+    else if (date[1] === 11) {
+        newdate = day + " November " + date[0];
+    }
+    else if (date[1] === 12) {
+        newdate = day + " December " + date[0];
+    }
 }

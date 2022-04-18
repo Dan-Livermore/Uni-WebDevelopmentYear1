@@ -30,7 +30,7 @@
     <div class="Account" id="AccountState">
         <h1>Time Management Program</h1>
 
-        <!-- This form will collect the username and password in later versions so no-one else can use another person's account-->
+        <!-- This form will collect the username and password used in storing different peoples data-->
         <form>
             <label for="uname">Username: </label>
             <input type="text" id="uname" name="uname"><br><br>
@@ -42,6 +42,7 @@
 
     <!-- Calendar Section -->
    <div class="Calendar" id="CalendarState">
+       <!-- Allows the user to change the month that is being shown-->
         <button id="button1" type="button" onclick="changeMonthUp(document.getElementsByClassName('CalendarYearTitle').id)">◀</button>
         <h1 id="0" class="CalendarYearTitle"> Month Year</h1>
         <button id="button2" type="button" onclick="changeMonthDown(document.getElementsByClassName('CalendarYearTitle').id)">▶</button> 
@@ -57,9 +58,6 @@
             <div id="Sun" class="Day">Sunday</div>
 
 <!-- When clicked the days on the calendar will open a new state where the user can enter in their data-->
-            <!-- <div id="Active" class="Item6" onclick="loadDay('Saturday 1st January 2022')">1</div> -->
-
-
             <div id="Item1" class="Active" onclick="loadDay(this.id)">1</div>
             <div id="Item2" class="Active" onclick="loadDay(this.id)">2</div>
             <div id="Item3" class="Active" onclick="loadDay(this.id)">3</div>
@@ -128,9 +126,9 @@
 
     <!-- Breakdown Section -->
     <div class="Breakdown" id="BreakdownState">
-        <!-- These placeholder values are replaced once data has been entered.-->
         <h1 id="BreakdownTitle">Breakdown</h1>
 
+        <!-- These placeholder values are replaced once data has been entered.-->
         <p id="TotalHours"> The combined total of all the hours goes here.</p>
         <p id="LongestApp"> The app with the most amount of data goes here.</p>
         <p id="MostUses"> The app with the most times used goes here.</p>
@@ -139,6 +137,7 @@
         <p id="MostHours"> The day with the most screen time goes here.</p>
 
         <p id="Usersname"> Add User's Name</p>
+        <marquee id="UpcomingEvent" scrollamount="20" width="30%"> The next day without data is x/x/x. </marquee>
 
         <button type="button" id="StartButton" onclick="StartBreakdown()">Start Breakdown</button>
         <button type="button" id="EndButton" onclick="EndBreakdown()">End Breakdown</button>
