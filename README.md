@@ -1,4 +1,5 @@
 ![](Title.png)
+
 This website allows users to see the statistics from their app usage.
 ## Key Features
 - Single Page Application that changes states for each section.
