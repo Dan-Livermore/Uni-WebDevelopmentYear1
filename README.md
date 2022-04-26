@@ -34,3 +34,6 @@ W3Schools.com for help with JavaScript.
 - https://stackoverflow.com/questions/2917175/return-multiple-values-in-javascript
 - https://www.w3schools.com/css/css_navbar_horizontal.asp
 - https://www.oreilly.com/library/view/javascript-the-definitive/0596000480/re355.html
+
+
+Written in HTML, JavaScript and HTML, using local storage.
