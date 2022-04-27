@@ -1,3 +1,5 @@
+// global variables initalized
+// Shows the required form the JSON array is meant to be
 var storeddata = [{
     "Username": "Shirley",
     "Application": "Snap!",
@@ -6,36 +8,39 @@ var storeddata = [{
     "Level": "1",
     "Day": "2022/03/01",
 }];
+// These will be used to prepare the data stored in local storage
 var saveddata = [];
 var combinedapps = [];
 var days = [];
 var user = "User";
+// Used in the breakdown section
 var interval;
 var latest;
 var newdate;
 
-function setUser(username) {
+/// Gets username from the log in to find the user's data in local storage.
+function SetUser(username) {
     user = username;
     document.forms[0].reset();
 }
 
-function hideStates() {
-    // This function hides the other states so when the application is first loaded, only the account state is shown.
+/// This function hides the other states so when the application is first loaded, only the account state is shown.
+function HideStates() {
     document.getElementById("BreakdownState").style.display="none";
     document.getElementById("CalendarState").style.display="none";
     document.getElementById("DataState").style.display="none";
 }
 
-function loadDay(ID){
-    // Loads the data entry section and adds the day to the form.
+/// Loads the data entry section and adds the day to the form.
+function LoadDay(ID){
     document.getElementById("DataState").style.display="block";
     var title = document.getElementById(ID).innerHTML + " " + document.getElementsByClassName("CalendarYearTitle")[0].innerHTML;
     document.getElementById("title").innerHTML = title;
     currentid = ID;
 }
 
-
-function storeData(title, aname, tspent, tused) {
+///Formats the data to be stored into local storage.
+function StoreData(title, aname, tspent, tused) {
     // Formats the data into JSON
     let entry = {
         Username: user,
@@ -43,7 +48,7 @@ function storeData(title, aname, tspent, tused) {
         PlayMins: tspent,
         Score: tused,
         Level: "1",
-        Day: formatMonth(title),
+        Day: FormatMonth(title),
     }
     // Adds the new array to the other stored data
     storeddata.push(entry);
@@ -58,7 +63,8 @@ function storeData(title, aname, tspent, tused) {
 
 }
 
-function formatMonth(title) {
+/// This sets the inital month shown as the title on the calendar and prepares the ID.
+function FormatMonth(title) {
     var split = title.split(" ");
 
     if (split[1] === "January") {
@@ -95,44 +101,51 @@ function formatMonth(title) {
 
 
 
-
-function fillData() {
+/// Uses the data from the local storage, performs algorithms on it and displays it to the breakdown page.
+function FillData() {
     // Takes the first json array from local storage and splits the data up into each item.
-    prepareData();
+    PrepareData();
 
-    breakdownMostApps();
-    breakdownMostHours();
-    breakdownLongestApp();
-    breakdownMostUses();
-    breakdownTotalHours();
-    breakdownPercentage();
-    breakdownTop5();
+    //Performs the algorithms to create the time review.
+    BreakdownMostApps();
+    BreakdownMostHours();
+    BreakdownLongestApp();
+    BreakdownMostUses();
+    BreakdownTotalHours();
+    BreakdownPercentage();
+    BreakdownTop5();
 
-    newAlert();
+    // Shows the user what the next day without any data on it is.
+    NewAlert();
 }
 
-function prepareData() {
+/// Takes the data from the local storage and organises it so it can be used later.
+function PrepareData() {
     saveddata = []
     var text = localStorage.getItem("DepressedWayfarers data");
     storeddata = text;
     text = text.split(",");
+    // Separates the JSON arrays
     for (var i = 0; i < text.length; i = i + 6) {
         text[i] = text[i].split('":\"');
         text[i] = text[i][1].replace('\"', "");
+        // Only stores the data with a matching username
         if (text[i] === user){
             saveddata.push(text[i]);
+            // Cleans the data
             for (var j = i+1; j < i+6; j++) {
                 text[j] = text[j].split('":\"');
                 text[j] = text[j][1].replace('\"', "");
                 text[j] = text[j].replace('}', "");
                 text[j] = text[j].replace(']', "");
+                // Stores all the data into the array
                 saveddata.push(text[j]);
             }
         }
     }
     for (var i = 0; i < saveddata.length; i = i + 6) {
         var found = false;
-
+        // If the appname is the same, add the current value and the new entires together
         for (var j = 0; j < combinedapps.length; j = j + 3) {
             if (saveddata[i + 1] === combinedapps[j]) {
                 combinedapps[j + 1] = parseInt(combinedapps[j + 1]) + parseInt(saveddata[i + 2]);
@@ -140,37 +153,41 @@ function prepareData() {
                 found = true;
             }
         }
+        // Else add new entry into the array
         if (found === false) {
             combinedapps.push(saveddata[i + 1]);
             combinedapps.push(parseInt(saveddata[i + 2]));
             combinedapps.push(parseInt(saveddata[i + 3]));
         }
     }
-    console.log(storeddata);
-    console.log(saveddata);
-    console.log(combinedapps);
 }
 
-function breakdownMostApps() {
+// Sorts through the user's data and finds the day with the most apps used.
+function BreakdownMostApps() {
     for (var i = 5; i < saveddata.length; i = i + 6) {
         days.push(saveddata[i]);
     }
+    // Finds the most used day
     days = days.sort();
     console.log(days);
     var day = "";
     var items = 0;
     var previtems = 0;
+    // Increment through the days until the most common day is found
     for (var j = 0; j < days.length; j++) {
         if (days[j] == day) {
             items += 1;
-            if (items >= ((days.length / 2)-previtems)) {
+            if (items >= ((days.length / 2) - previtems)) {
+                // Found the most common day
                 var apps = [];
                 for (var k = 5; k < saveddata.length; k = k + 6) {
                     if (saveddata[k] === day) {
+                        // Stores its name to an array
                         apps.push(saveddata[k - 4]);
                     }
                 }
-                //document.getElementById("MostApps").innerHTML = "The day with the most recorded apps is " + day + " where you used these apps: " + apps + " !";
+                // The most used day and all the apps used are added to the breakdown window.
+                document.getElementById("MostApps").innerHTML = "The day with the most recorded apps is " + day + " where you used these apps: " + apps + " !";
                 j = days.length;
             }
         } else {
@@ -183,9 +200,11 @@ function breakdownMostApps() {
     }
 }
 
-function breakdownMostHours() {
+// Combines all of the recorded activities and finds the day with the greatest total.
+function BreakdownMostHours() {
     daytotal = [];
     var pointer = 0;
+    // Iterates through the data, array by array
     for (var i = 0; i < saveddata.length; i = i + 6) {
         var found = false;
         for (var j = 0; j < days.length; j = j + 1) {
@@ -194,6 +213,7 @@ function breakdownMostHours() {
                 pointer = j;
             }
         }
+        // Adds the next elements values to the total
         if (found == true) {
             daytotal[pointer + 1] = parseInt(daytotal[pointer + 1]) + parseInt(saveddata[i + 2]);
         }
@@ -202,6 +222,7 @@ function breakdownMostHours() {
             daytotal.push(parseInt(saveddata[i + 2]));
         }
     }
+    // Stores day with the time spent
     var greatesthours = ["",0];
     for (var k = 0; k < daytotal.length; k = k + 2) {
         if (daytotal[k + 1] > greatesthours[1]) {
@@ -211,11 +232,13 @@ function breakdownMostHours() {
     }
     var day = greatesthours[0].split("/")
     day[1] = parseInt(day[1]);
-    displayDate(day);
+    DisplayDate(day);
+    // Adds it to the window
     document.getElementById("MostHours").innerHTML = "The day with the most recorded screentime is " + newdate + " where you spent: " + greatesthours[1] + " minutes using apps!";
 }
 
-function breakdownLongestApp() {
+// Searches through the user's app totals and displays the app with the greatest time spent
+function BreakdownLongestApp() {
     var name = "";
     var hours = 0;
     for (var i = 0; i < combinedapps.length; i = i + 3) {
@@ -227,7 +250,8 @@ function breakdownLongestApp() {
     document.getElementById("LongestApp").innerHTML = "The app you have used the most is " + name + ", with " + hours + " hours!";
 }
 
-function breakdownMostUses() {
+// Finds the app that has the largest number of times used and sends it to the breakdown page
+function BreakdownMostUses() {
     var name = "";
     var uses = 0;
     for (var i = 0; i < combinedapps.length; i = i + 3) {
@@ -239,7 +263,8 @@ function breakdownMostUses() {
     document.getElementById("MostUses").innerHTML = "The app you have loaded the most times is " + name + ", which you have used " + uses + " times!";
 }
 
-function breakdownTotalHours() {
+// Adds all the app usage time together and displays it.
+function BreakdownTotalHours() {
     var total = 0;
     for (var i = 0; i < saveddata.length; i = i + 6) {
         total += parseInt(saveddata[i + 2]);
@@ -247,19 +272,23 @@ function breakdownTotalHours() {
     document.getElementById("TotalHours").innerHTML = total + " Minutes of total screen time!";
 }
 
-function breakdownPercentage() {
+/// Calculates the total percentage of time spent with apps by working out the total time spent and the amount of time between the first and last element stored
+function BreakdownPercentage() {
     var earliest = saveddata[5];
     latest = saveddata[5];
     var total = 0;
+    // Iterates through the data to find the days that are first and last from the stored data.
     for (var i = 5; i < saveddata.length; i = i + 6) {
         if (saveddata[i] < earliest) {
             earliest = saveddata[i];
         } else if (saveddata[i] > latest) {
             latest = saveddata[i];
         }
+        // Total Time Spent of All Recorded Data
         total += parseInt(saveddata[i - 3]);
         
     }
+    // Earliest and latest stores the app name, time spent and times used.
     var daysrecorded = 0;
     earliest = earliest.split("/");
     latest = latest.split("/");
@@ -270,6 +299,7 @@ function breakdownPercentage() {
     latest[1] = parseInt(latest[1]);
     latest[2] = parseInt(latest[2]);
     var found = false
+    // Calculates the number of days between the earliest and latest piece of data
     while (found != true) {
         if (earliest[1] === latest[1]) {
             daysrecorded += latest[2];
@@ -290,17 +320,21 @@ function breakdownPercentage() {
         }
     }
     daysrecorded *= 24 * 60;
+    // Calculates the percentage
     var percentage = Math.round((total / daysrecorded * 100));
     document.getElementById("PercentOfLife").innerHTML = "You have spent " + percentage + "% of your life using apps!";
 }
 
-function breakdownTop5() {
+// Orders the first 5 apps by their time spent using them.
+function BreakdownTop5() {
+    // initates variables used later.
     var one = "";
     var two = "";
     var three = "";
     var four = "";
     var five = "";
     var elements = combinedapps.length / 3;
+    // Takes the orders elements and displays them, calls the sorting algorithm depending on how many apps there are
     if (elements === 1) {
         document.getElementById("Top5").innerHTML = "Your Most used app is: " + combinedapps[0] + ".";
     } else if (elements === 2) {
@@ -318,6 +352,7 @@ function breakdownTop5() {
     }
 }
 
+// Finds which number is greater and returns it
 function Top5TwoElements(a, b) {
     if (combinedapps[a] >= combinedapps[b]) {
         one = combinedapps[a - 1];
@@ -329,6 +364,7 @@ function Top5TwoElements(a, b) {
     return [ one , two ];
 }
 
+// Finds what number is the greatest and then calls the previous function to rank the apps
 function Top5ThreeElements(a, b, c) {
     if (combinedapps[a] >= combinedapps[b] && combinedapps[a] >= combinedapps[c]) {
         //a
@@ -348,6 +384,7 @@ function Top5ThreeElements(a, b, c) {
     return [ one, two, three ];
 }
 
+// Repeats for the rest of the elements
 function Top5FourElements(a, b, c, d) {
     if (combinedapps[a] >= combinedapps[b] && combinedapps[a] >= combinedapps[c] && combinedapps[a] >= combinedapps[d]) {
         //a
@@ -405,6 +442,7 @@ function Top5FiveElements(a, b, c, d, e) {
     return [one, two, three, four, five];
 }
 
+/// Used to swap between the states of the webpage when selected from the top menu
 function changeState(currentID) {
     // This hides all other states but the one that is currently loaded and if it is on the breakdown state
     ReturnBackground();
@@ -426,17 +464,14 @@ function changeState(currentID) {
         document.getElementById("AccountState").style.display = "none";
         document.getElementById("DataState").style.display = "none";
         EndBreakdown();
-        // Enters the saved data onto the breakdown page. MUST CHANGE
-        fillData();
+        // Enters the saved data onto the breakdown page
+        FillData();
     }
 }
 
-function ReturnBackground() {
-    window.clearTimeout(interval);
-    document.getElementsByTagName("body")[0].style.backgroundColor = "ghostwhite";
-}
-
+/// Makes the background more interesting when displaying the broken down data.
 function SetBackground() {
+    // Changes the colour of the background every second
     interval = window.setTimeout("SetBackground()", 1000);
     var index = Math.round(Math.random() * 6);
     var ColorValue = "FFFFFF";
@@ -455,6 +490,13 @@ function SetBackground() {
     document.getElementsByTagName("body")[0].style.backgroundColor = "#" + ColorValue;
 }
 
+/// Returns the background colour to the default when stopping the breakdowns
+function ReturnBackground() {
+    window.clearTimeout(interval);
+    document.getElementsByTagName("body")[0].style.backgroundColor = "ghostwhite";
+}
+
+/// When the breakdown is selected load all the required elements
 function StartBreakdown() {
     SetBackground();
     document.getElementById("MostHours").style.display = "block";
@@ -464,14 +506,13 @@ function StartBreakdown() {
     document.getElementById("PercentOfLife").style.display = "block";
     document.getElementById("Top5").style.display = "block";
 
-    //document.getElementById("TotalTable").style.display = "none";
     document.getElementById("StartButton").style.display = "none";
     document.getElementById("EndButton").style.display = "block";
-    //document.getElementById("UserTable").style.display = "block";
     document.getElementById("Usersname").style.display = "none";
     document.getElementById("BreakdownTitle").innerHTML = user + "'s data";
 }
 
+/// When stopping the breakdown return the elements that were originally on the window
 function EndBreakdown() {
     ReturnBackground();
     document.getElementById("MostHours").style.display = "none";
@@ -481,23 +522,23 @@ function EndBreakdown() {
     document.getElementById("PercentOfLife").style.display = "none";
     document.getElementById("Top5").style.display = "none";
 
-    //document.getElementById("TotalTable").style.display = "block";
     document.getElementById("StartButton").style.display = "block";
     document.getElementById("EndButton").style.display = "none";
-    /*document.getElementById("UserTable").style.display = "none";*/
     document.getElementById("Usersname").style.display = "block";
     document.getElementById("Usersname").innerHTML = "User: " + user;
     document.getElementById("BreakdownTitle").innerHTML = "Breakdown";
 }
 
-function newAlert() {
+/// Finds the last day stored previously and displays the next free day to alert the user of an upcoming event that needs to be stored.
+function NewAlert() {
     latest[2] = parseInt(latest[2]) + 1;
     console.log(latest);
-    displayDate(latest);
+    DisplayDate(latest);
     document.getElementById("UpcomingEvent").innerHTML = "The next day without data is " + newdate + ".";
 }
 
-function displayDate(date) {
+/// Reorganizes the date that is stored to fit DD/MM/YYYY rather than YYYY/MM/DD
+function DisplayDate(date) {
     var day = parseInt(date[2]);
     if (date[1] === 1) {
         newdate = day + " January " + date[0];

@@ -6,7 +6,7 @@ This website allows users to see the statistics from their app usage.
 - Multiple accounts can be used to allow different people to store their data.
 - Calendar for all of 2022.
 - Store data for multiple apps per each day.
-- Graphically represent the given data.
+- Visual representation of the user's data.
 ## How To Use
 1. Log in to an account
 2. Change state on the top right, press **Calendar**.

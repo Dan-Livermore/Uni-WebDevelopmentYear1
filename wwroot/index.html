@@ -7,6 +7,7 @@
     <script src="javascript.js"></script>
     <script src="calendarupdates.js"></script>
 
+    <!--Did not get this into the CSS file-->
     <style>        
         body {
             background-color: ghostwhite;
@@ -14,7 +15,7 @@
     </style>
 </head>
 
-<body onload="hideStates()">
+<body onload="HideStates()">
 
     <!-- Top Menu-->
     <div class="TopMenu">
@@ -36,16 +37,16 @@
             <input type="text" id="uname" name="uname"><br><br>
             <label for="pword">Password: </label>
             <input type="password" id="pword" name="pword"><br><br>
-            <input id="submit" type="submit" value="OK" onclick="event.preventDefault();setUser(document.getElementById('uname').value)">
+            <input id="submit" type="submit" value="OK" onclick="event.preventDefault();SetUser(document.getElementById('uname').value)">
         </form>
     </div>
 
     <!-- Calendar Section -->
    <div class="Calendar" id="CalendarState">
        <!-- Allows the user to change the month that is being shown-->
-        <button id="button1" type="button" onclick="changeMonthUp(document.getElementsByClassName('CalendarYearTitle').id)">◀</button>
+        <button id="button1" type="button" onclick="ChangeMonthUp(document.getElementsByClassName('CalendarYearTitle').id)">◀</button>
         <h1 id="0" class="CalendarYearTitle"> Month Year</h1>
-        <button id="button2" type="button" onclick="changeMonthDown(document.getElementsByClassName('CalendarYearTitle').id)">▶</button> 
+        <button id="button2" type="button" onclick="ChangeMonthDown(document.getElementsByClassName('CalendarYearTitle').id)">▶</button> 
         
         <div class="GridContainer">
             <!-- Creates a grid that is 6x7 elements in size, the first row displays the days of the week while the rest show the calendar-->
@@ -120,7 +121,7 @@
             <label for="tused"> Times Used: </label>
             <input type="number" id="tused" name="tused"><br><br>
              </form>
-        <input type="submit" value="Save" onclick="event.preventDefault();storeData(document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value)">
+        <input type="submit" value="Save" onclick="event.preventDefault();StoreData(document.getElementById('title').innerHTML, document.getElementById('aname').value, document.getElementById('tspent').value, document.getElementById('tused').value)">
        
     </div>
 
