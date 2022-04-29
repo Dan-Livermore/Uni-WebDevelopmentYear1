@@ -457,7 +457,7 @@ function changeState(currentID) {
         document.getElementById("AccountState").style.display = "none";
         document.getElementById("DataState").style.display = "none";
         // Loads the current month on the calendar
-        selectMonth();
+        SelectMonth();
     } else {
         document.getElementById("BreakdownState").style.display = "block";
         document.getElementById("CalendarState").style.display = "none";
