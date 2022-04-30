@@ -160,6 +160,8 @@ function PrepareData() {
             combinedapps.push(parseInt(saveddata[i + 3]));
         }
     }
+    console.log(saveddata);
+    console.log(combinedapps);
 }
 
 // Sorts through the user's data and finds the day with the most apps used.
@@ -505,6 +507,7 @@ function StartBreakdown() {
     document.getElementById("TotalHours").style.display = "block";
     document.getElementById("PercentOfLife").style.display = "block";
     document.getElementById("Top5").style.display = "block";
+    document.getElementById("MostApps").style.display = "block";
 
     document.getElementById("StartButton").style.display = "none";
     document.getElementById("EndButton").style.display = "block";
@@ -521,6 +524,7 @@ function EndBreakdown() {
     document.getElementById("TotalHours").style.display = "none";
     document.getElementById("PercentOfLife").style.display = "none";
     document.getElementById("Top5").style.display = "none";
+    document.getElementById("MostApps").style.display = "none";
 
     document.getElementById("StartButton").style.display = "block";
     document.getElementById("EndButton").style.display = "none";
