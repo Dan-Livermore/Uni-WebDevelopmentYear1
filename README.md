@@ -7,6 +7,7 @@ This website allows users to see the statistics from their app usage.
 - Calendar for all of 2022.
 - Store data for multiple apps per each day.
 - Visual representation of the user's data.
+
 ## How To Use
 1. Log in to an account
 2. Change state on the top right, press **Calendar**.
@@ -23,6 +24,12 @@ This website allows users to see the statistics from their app usage.
 ![](Gif3.gif)
 Press **End Breakdown** to end the breakdown.
 You can enter more data into the calendar or swap users to continue using the program.
+
+## Future Updates
+- Edit data
+- Delete data
+- Store data into database
+- Support Alexa
 
 ## Links
 W3Schools.com for help with JavaScript.

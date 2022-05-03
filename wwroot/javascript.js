@@ -536,7 +536,18 @@ function EndBreakdown() {
 /// Finds the last day stored previously and displays the next free day to alert the user of an upcoming event that needs to be stored.
 function NewAlert() {
     latest[2] = parseInt(latest[2]) + 1;
-    console.log(latest);
+    if (latest[2] == 29 && latest[1] == 2) {
+        latest[2] = 1;
+        latest[1] = latest[1]+1;
+    }
+    else if (latest[2] == 31 && (latest[1] == 4 || latest[1] == 6 || latest[1] == 9 || latest[1] == 11)) {
+        latest[2] = 1;
+        latest[1] = latest[1] + 1;
+    }
+    else if (latest[2] == 32 && (latest[1] == 1 || latest[1] == 3 || latest[1] == 5 || latest[1] == 7 || latest[1] == 8 || latest[1] == 10 || latest[1] == 12)) {
+        latest[2] = 1;
+        latest[1] = latest[1] + 1;
+    }
     DisplayDate(latest);
     document.getElementById("UpcomingEvent").innerHTML = "The next day without data is " + newdate + ".";
 }
