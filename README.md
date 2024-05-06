@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ![](Title.png)
 
 This website allows users to see the statistics from their app usage.
@@ -46,7 +45,3 @@ W3Schools.com for help with JavaScript.
 
 
 Written in HTML, JavaScript and CSS, using local storage.
-=======
-# Uni-WebDevelopmentYear1
-This repository houses the SPA developed during the year long module of 1004 at University. Developed using exclusively HTML, CSS and JavaScript; a time management application was made.
->>>>>>> fc63667bae32967d0fceec0679cb24d029a407ef
